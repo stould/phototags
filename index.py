@@ -15,7 +15,7 @@ APP_SECRET = "c3215108a42e5e389c6e18dbd329eb51";
 
 #setup
 app = Flask(__name__)
-app.config.from_object(config.ProductionConfig)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 db  = SQLAlchemy(app)
 
 
