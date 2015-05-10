@@ -62,6 +62,3 @@ def getphotos(username):
     response = httpGet("/v2.3/%s/me?access_token=%s" % (user.userid, user.access_token))
     
     return str(response.decode('utf-8'))
-
-if __name__ == "__main__":
-    app.run(debug=True)
