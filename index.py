@@ -2,8 +2,11 @@ import os
 import json
 import http.client
 
+import config
+
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+
 
 #constants
 URL_PREFIX = "graph.facebook.com";
@@ -12,7 +15,7 @@ APP_SECRET = "c3215108a42e5e389c6e18dbd329eb51";
 
 #setup
 app = Flask(__name__)
-app.config.from_object(os.environ['APP_SETTINGS'])
+app.config.from_object(config.ProductionConfig)
 db  = SQLAlchemy(app)
 
 
