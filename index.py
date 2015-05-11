@@ -93,7 +93,7 @@ def addtoken(username, token):
 def getphotos(username):
     user = FBuser.query.filter_by(username=username).first()
     
-    response = httpGet("/v2.3/%s/me?access_token=%s" % (user.userid, user.access_token))
+    response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token))
     
     return str(response.decode('utf-8'))
 
