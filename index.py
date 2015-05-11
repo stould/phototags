@@ -10,8 +10,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 #constants
 URL_PREFIX = "graph.facebook.com";
-APP_ID = "387638781429773";
-APP_SECRET = "c3215108a42e5e389c6e18dbd329eb51";
+APP_ID = "466465463517234";
+APP_SECRET = "d12434e88aff924402e529c6c8b493df";
 
 #setup
 app = Flask(__name__)
@@ -50,8 +50,12 @@ def httpGet(uri):
 Gets a long live token
 """
 def getExtendedToken(token):
-    response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s" % (APP_ID, APP_SECRET, token))
-    return str(response)[15:]
+    json_response = json.loads(httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s" % (APP_ID, APP_SECRET, token)))
+
+    if json_response.access_token:
+        return json_response.accessing
+    else:
+        return -1
 
 
 @app.route('/user/<username>')
@@ -69,14 +73,18 @@ def getuserid(username):
 def addtoken(username, token):
     try:
         extended_token = getExtendedToken(token)
-        userid = json.loads(getuserid(username))['id']
 
-        try:
-            db.session.add(FBuser(userid, username, extended_token))
-            db.session.commit()
-            return json.dumps({"status": 1})
-        except:
-            return json.dumps({"status": 0, "message": "error inserting user token"})
+        if extended_token != -1:        
+            userid = json.loads(getuserid(username))['id']
+
+            try:
+                db.session.add(FBuser(userid, username, extended_token))
+                db.session.commit()
+                return json.dumps({"status": 1})
+            except:
+                return json.dumps({"status": 0, "message": "error inserting user token"})
+        else:
+            return json.dumps({"status": 0, "message": "invalid initial token"});
     except:
         return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})
     
