@@ -50,10 +50,10 @@ def httpGet(uri):
 Gets a long live token
 """
 def getExtendedToken(token):
-    json_response = json.loads(httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s" % (APP_ID, APP_SECRET, token)))
+    response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s" % (APP_ID, APP_SECRET, token))
 
-    if json_response.access_token:
-        return json_response.access_token
+    if response.startswith("access_token"):
+        return response[15:]
     else:
         return -1
 
@@ -73,7 +73,7 @@ def getuserid(username):
 def addtoken(username, token):
     try:
         extended_token = getExtendedToken(token)
-
+        
         if extended_token != -1:        
             userid = json.loads(getuserid(username))['id']
 
