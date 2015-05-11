@@ -52,7 +52,7 @@ Gets a long live token
 def getExtendedToken(token):
     response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s" % (APP_ID, APP_SECRET, token))
 
-    if response.startswith("access_token"):
+    if response.startswith(b'access_token'):
         return response[15:]
     else:
         return -1
