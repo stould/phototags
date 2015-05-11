@@ -67,18 +67,15 @@ def getuserid(username):
 
 @app.route('/addtoken/<username>/<token>')
 def addtoken(username, token):
+    extended_token = getExtendedToken(token)
+    userid = json.loads(getuserid(username))['id']
+    
     try:
-        extended_token = getExtendedToken(token)
-        userid = json.loads(getuserid(username))['id']
-
-        try:
-            db.session.add(FBuser(userid, username, extended_token))
-            db.session.commit()
-            return json.dumps({"status": 1})
-        except:
-            return json.dumps({"status": 0, "message": "error inserting user token"})
+        db.session.add(FBuser(userid, username, extended_token))
+        db.session.commit()
+        return json.dumps({"status": 1})
     except:
-        return json.dumps({"status": 0, "message": "error accessing user token"})
+        return json.dumps({"status": 0, "message": "error inserting user token"})
     
 
 @app.route('/photos/<username>')
