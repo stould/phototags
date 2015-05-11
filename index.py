@@ -16,6 +16,7 @@ APP_SECRET = "c3215108a42e5e389c6e18dbd329eb51";
 #setup
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.config['DEBUG'] = True
 db  = SQLAlchemy(app)
 
 
@@ -35,6 +36,7 @@ class FBuser(db.Model):
     def __repr__(self):
         return '<userid {}>'.format(self.userid)
 
+    
 
 """
 Http GET reponse
@@ -65,24 +67,25 @@ def getuserid(username):
 
 @app.route('/addtoken/<username>/<token>')
 def addtoken(username, token):
-    extended_token = getExtendedToken(token)
-    userid = json.loads(getuserid(username))['id']
-
     try:
-        db.session.add(FBuser(userid, username, extended_token))
-        db.session.commit()
-        return json.dumps({"status": 1})
+        extended_token = getExtendedToken(token)
+        userid = json.loads(getuserid(username))['id']
+
+        try:
+            db.session.add(FBuser(userid, username, extended_token))
+            db.session.commit()
+            return json.dumps({"status": 1})
+        except:
+            return json.dumps({"status": 0, "message": "error inserting user token"})
     except:
-        return json.dumps({"status": 0})
+        return json.dumps({"status": 0, "message": "error accessing user token"})
     
 
 @app.route('/photos/<username>')
 def getphotos(username):
-    user = FBuser.query.filter_by(username='aajjbbk').first()
+    user = FBuser.query.filter_by(username=username).first()
     
     response = httpGet("/v2.3/%s/me?access_token=%s" % (user.userid, user.access_token))
     
     return str(response.decode('utf-8'))
 
-if __name__ == "__main__":
-    app.run(debug=True)
