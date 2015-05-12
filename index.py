@@ -92,6 +92,7 @@ def addtoken(username, token):
 @app.route('/photos/<username>')
 def getphotos(username):
     user = FBuser.query.filter_by(username=username).first()
-
-    return str(user)
     
+    response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token))
+    
+    return str(response.decode('utf-8'))    
