@@ -5,6 +5,7 @@ import http.client
 import config
 
 from flask import Flask
+from flask import render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 
 
@@ -58,6 +59,10 @@ def getExtendedToken(token):
         return -1
 
 
+@app.rounte('/login')
+def login():
+    return render_template("login.html")
+    
 @app.route('/user/<username>')
 def getuserid(username):
     response = httpGet("/%s" % username)
