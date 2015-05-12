@@ -92,7 +92,15 @@ def addtoken(username, token):
             return json.dumps({"status": 0, "message": "invalid initial token"});
     except:
         return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})
-    
+
+@app.route('/user/<username>')
+def getUserInfo(username):
+    user = FBuser.query.filter_by(username=username).first()
+
+    if user:
+        return json.dumps({"status": 1, "user_id": user.userid, "username": user.username})
+    else:
+        return json.dumps({"status": 0})
 
 @app.route('/photos/<username>')
 def getphotos(username):
