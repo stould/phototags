@@ -2,8 +2,6 @@ import os
 import json
 import http.client
 
-import config
-
 from flask import Flask
 from flask import render_template
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -22,7 +20,7 @@ db  = SQLAlchemy(app)
 
 
 #database model
-class FBuser(db.Model):
+class FBuserTable(db.Model):
     __tablename__ = 'fbuser'
 
     userid       = db.Column(db.String(), primary_key=True)
@@ -37,7 +35,17 @@ class FBuser(db.Model):
     def __repr__(self):
         return '<userid {}>'.format(self.userid)
 
-    
+class InviteTable(db.Model):
+    __tablename__ = 'invite'
+
+    id = db.Column(db.Integer(), primary_key)
+    username = db.Column(db.String())
+
+    def __init__(self, username):
+        self.username = username
+
+    def __repr__(self):
+        return '<username {}>'.format(self.username)
 
 """
 Http GET reponse
@@ -47,11 +55,13 @@ def httpGet(uri):
     conn.request("GET", uri)
     r1 = conn.getresponse()
     return r1.read()
+
 """
 Gets a long live token
 """
 def getExtendedToken(token):
-    response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s" % (APP_ID, APP_SECRET, token))
+    response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s"
+                       % (APP_ID, APP_SECRET, token))
     
     if response.startswith(b'access_token'):
         return str(response)[15:]
@@ -62,6 +72,18 @@ def getExtendedToken(token):
 @app.route('/login')
 def login():
     return render_template("login.html")
+
+@app.reoute('/invite/<username>')
+def inviteUser(username):
+    invite = IniviteTable.query.filter_by(username=username).first()
+
+    if invite:
+        return json.dumps({"status": 0, "message": "already invited"})
+    else:
+        db.session.add(IniviteTable(username))
+        db.session.commit()
+        return json.dumps({"status": 1})
+    
     
 @app.route('/user/<username>')
 def getuserid(username):
@@ -72,7 +94,7 @@ def getuserid(username):
         id = json_parse['id']    
         return json.dumps({'id' : id, "status" : 1})
     except KeyError:
-        return json.dumps({"status" : 0})
+        return json.dumps({"status" : 0})    
 
 @app.route('/addtoken/<username>/<token>')
 def addtoken(username, token):
@@ -83,7 +105,7 @@ def addtoken(username, token):
             userid = json.loads(getuserid(username))['id']
 
             try:
-                db.session.add(FBuser(userid, username, extended_token))
+                db.session.add(FBuserTable(userid, username, extended_token))
                 db.session.commit()
                 return json.dumps({"status": 1})
             except:
@@ -95,7 +117,7 @@ def addtoken(username, token):
 
 @app.route('/user/<username>')
 def getUserInfo(username):
-    user = FBuser.query.filter_by(username=username).first()
+    user = FBuserTable.query.filter_by(username=username).first()
 
     if user:
         return json.dumps({"status": 1, "user_id": user.userid, "username": user.username})
@@ -104,7 +126,7 @@ def getUserInfo(username):
 
 @app.route('/photos/<username>')
 def getphotos(username):
-    user = FBuser.query.filter_by(username=username).first()
+    user = FBuserTable.query.filter_by(username=username).first()
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token))
     
