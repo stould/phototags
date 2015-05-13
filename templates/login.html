@@ -44,7 +44,7 @@
     cookie     : true,  // enable cookies to allow the server to access 
                         // the session
     xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.2' // use version 2.2
+    version    : 'v2.3' // use version 2.3
   });
 
   // Now that we've initialized the JavaScript SDK, we call 
@@ -84,6 +84,25 @@
         'Thanks for logging in, ' + response.name + '!';
     });
   }
+
+	//I hope it work.. We can hadle the response in the requestCallback, 
+	function sendRequestToRecipients() {
+	var user_ids = document.getElementsByName("user_ids")[0].value;
+		FB.ui({method: 'apprequests',
+		  message: 'Request para varias pessoas',
+		  to: user_ids
+		}, requestCallback);
+	}
+
+	function sendFriendRequests() {
+		FB.ui({method: 'apprequests',
+		  message: 'Reqeust para pessoa atual'
+		}, requestCallback);
+	}
+
+	function requestCallback(response) {
+		// Handle callback here
+	}
 </script>
 
 <!--
