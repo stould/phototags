@@ -19,7 +19,7 @@ app.config['DEBUG'] = True
 db  = SQLAlchemy(app)
 
 
-#database model
+#database models
 class FBuserTable(db.Model):
     __tablename__ = 'fbuser'
 
@@ -38,7 +38,7 @@ class FBuserTable(db.Model):
 class InviteTable(db.Model):
     __tablename__ = 'invite'
 
-    id = db.Column(db.Integer(), primary_key)
+    id = db.Column(db.Integer(), primary_key=True)
     username = db.Column(db.String())
 
     def __init__(self, username):
@@ -73,14 +73,14 @@ def getExtendedToken(token):
 def login():
     return render_template("login.html")
 
-@app.reoute('/invite/<username>')
+@app.route('/invite/<username>')
 def inviteUser(username):
-    invite = IniviteTable.query.filter_by(username=username).first()
+    invite = InviteTable.query.filter_by(username=username).first()
 
     if invite:
         return json.dumps({"status": 0, "message": "already invited"})
     else:
-        db.session.add(IniviteTable(username))
+        db.session.add(InviteTable(username))
         db.session.commit()
         return json.dumps({"status": 1})
     
@@ -115,12 +115,46 @@ def addtoken(username, token):
     except:
         return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})
 
+    
+"""
+status =>
+0 = both users not in the system
+1 = user_1
+"""
+@app.route('/userstatus/<username_1>/<username_2>')
+def userstatus(username_1, username_2):
+    status_1 = 0
+    status_2 = 0
+    
+    user1 = FBuserTable.query.filter_by(username=username_1).first()
+
+    if user1:
+        status_1 = 1
+    else:
+        if InviteTable.query.filter_by(username=username_1).first():
+            status_1 = 2
+        
+    
+    user2 = FBuserTable.query.filter_by(username=username_2).first()
+
+    if user2:
+        status_2 = 1
+    else:
+        if InviteTable.query.filter_by(username=username_2).first():
+            status_2 = 2
+
+    
+    return json.dumps({"status_1" : status_1, "status_2": status_2})
+    
+    
 @app.route('/user/<username>')
 def getUserInfo(username):
     user = FBuserTable.query.filter_by(username=username).first()
 
+    user['status'] = 1;
+    
     if user:
-        return json.dumps({"status": 1, "user_id": user.userid, "username": user.username})
+        return json.dumps(user)
     else:
         return json.dumps({"status": 0})
 
