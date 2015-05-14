@@ -81,7 +81,7 @@ def login():
     return render_template("login.html")
 	
 @app.route('/appinvite')
-def login():
+def appinvite():
     return render_template("appinvite.html")
 
 @app.route('/invite/<username>')
