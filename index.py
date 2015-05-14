@@ -69,7 +69,7 @@ def getExtendedToken(token):
         return -1
 
 @app.route('/beta_login')
-def login():
+def beta_login():
     return render_template("beta_login.html")
 
 @app.route('/login')
