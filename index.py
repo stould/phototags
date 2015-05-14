@@ -128,10 +128,10 @@ def getUserStatus(username):
     status = 0
     user = FBuserTable.query.filter_by(username=username).first()
 
-    if user1:
+    if user:
         status = 1
     else:
-        if InviteTable.query.filter_by(username=username_1).first():
+        if InviteTable.query.filter_by(username=username).first():
             status = 2
     return status
 
