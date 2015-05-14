@@ -50,7 +50,17 @@ function fb_login(){
 }());
 </script>
 
-<a href="#" onclick="fb_login();">link</a>
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+
+<a href="#" onclick="fb_login();" style="margin:0; padding:0;" ><input type="button" value="Try Facebook photoTags®" style=" cursor:pointer; margin-left:15px; width:200px; padding-top:3px; padding-bottom:3px; border-radius:3px; border:0; background-color:rgb(71,99,158); color:white;" /></a>
+
+<div id="status">
+</div>
 
 </body>
 </html>
