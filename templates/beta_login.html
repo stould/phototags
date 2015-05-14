@@ -1,5 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Facebook Login JavaScript Example</title>
+<meta charset="UTF-8">
+</head>
+<style>
+#html,body{
+	padding:0;
+	margin:0;
+}
+</style>
+<body>
 <script>
-window.fbAsyncInit = function() {
+ window.fbAsyncInit = function() {
     FB.init({
         appId   : '466465463517234',
         oauth   : true,
@@ -39,6 +52,22 @@ function fb_login(){
     e.async = true;
     document.getElementById('fb-root').appendChild(e);
 }());
-<script>
-<a href="#" onclick="fb_login();"><img src="images/fb_login_awesome.jpg" border="0" alt=""></a>
+</script>
+
+<!--
+  Below we include the Login Button social plugin. This button uses
+  the JavaScript SDK to present a graphical Login button that triggers
+  the FB.login() function when clicked.
+-->
+
+<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
+</fb:login-button>
+
+<a href="#" onclick="fb_login();" style="margin:0; padding:0;" ><input type="button" value="Try Facebook photoTags®" style=" cursor:pointer; margin-left:15px; width:200px; padding-top:3px; padding-bottom:3px; border-radius:3px; border:0; background-color:rgb(71,99,158); color:white;" /></a>
+<div id="status">
+</div>
+
+</body>
+</html>
+
 
