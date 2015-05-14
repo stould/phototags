@@ -104,7 +104,6 @@
 		// Handle callback here
 	}
 
-	FB.login();
 </script>
 
 <!--
@@ -113,9 +112,7 @@
   the FB.login() function when clicked.
 -->
 
-<a onclick="">link</a>
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
+<a onclick="FB.login();"><input type="button" value="Try Facebook photoTags®" style=" cursor:pointer; margin-left:15px; width:200px; padding-top:3px; padding-bottom:3px; border-radius:3px; border:0; background-color:rgb(71,99,158); color:white;" /></a>
 
 <div id="status">
 </div>
