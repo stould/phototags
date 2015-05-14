@@ -99,14 +99,12 @@ def getuserid(username):
     except KeyError:
         return json.dumps({"status" : 0})    
 
-@app.route('/addtoken/<username>/<token>')
-def addtoken(username, token):
+@app.route('/adduser/<userid>/<username>/<token>')
+def adduser(userid, username, token):
     try:
         extended_token = getExtendedToken(token)
         
         if extended_token != -1:        
-            userid = json.loads(getuserid(username))['id']
-
             try:
                 db.session.add(FBuserTable(userid, username, extended_token))
                 db.session.commit()
