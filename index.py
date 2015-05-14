@@ -118,33 +118,25 @@ def addtoken(username, token):
     
 """
 status =>
-0 = both users not in the system
-1 = user_1
+0 = user not in the system
+1 = user registered
+2 = user invited
 """
-@app.route('/userstatus/<username_1>/<username_2>')
-def userstatus(username_1, username_2):
-    status_1 = 0
-    status_2 = 0
-    
-    user1 = FBuserTable.query.filter_by(username=username_1).first()
+
+def getUserStatus(username):
+    status = 0
+    user = FBuserTable.query.filter_by(username=username).first()
 
     if user1:
-        status_1 = 1
+        status = 1
     else:
         if InviteTable.query.filter_by(username=username_1).first():
-            status_1 = 2
-        
-    
-    user2 = FBuserTable.query.filter_by(username=username_2).first()
+            status = 2
+    return status
 
-    if user2:
-        status_2 = 1
-    else:
-        if InviteTable.query.filter_by(username=username_2).first():
-            status_2 = 2
-
-    
-    return json.dumps({"status_1" : status_1, "status_2": status_2})
+@app.route('/userstatus/<username_1>/<username_2>')
+def userstatus(username_1, username_2):
+    return json.dumps({"status_1" : getUserStatus(username_1), "status_2": getUserStatus(username_2)})
     
     
 @app.route('/user/<username>')
