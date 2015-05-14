@@ -2,24 +2,24 @@
   xmlns:fb="https://www.facebook.com/2008/fbml">
   
 <div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+
 
 <p>
 <input type="button"
-  onclick="sendRequestToRecipients(); return false;"
+  onclick="sendRequestViaMultiFriendSelector(); return false;"
   value="Send Request To Your Facebook Friends"
 />
 </p>
 
-<script src="http://connect.facebook.net/en_US/all.js">
-	FB.init({
-		appId      : '466465463517234',
-		cookie     : true,  // enable cookies to allow the server to access 
-        // the session
-		xfbml      : true,  // parse social plugins on this page
-		version    : 'v2.3' // use version 2.3
-	});
+<script>
+  FB.init({
+    appId  : '466465463517234',
+    frictionlessRequests: true
+  });
 
-  function sendRequestToRecipients() {
+  function sendRequestViaMultiFriendSelector() {
+    var user_ids = document.getElementsByName("user_ids")[0].value;
     FB.ui({method: 'apprequests',
       message: 'Awesome Application try it once',
       to: 100003591498179
