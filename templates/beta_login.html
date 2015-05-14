@@ -5,14 +5,10 @@
 <meta charset="UTF-8">
 </head>
 <style>
-html,body{
-	padding:0;
-	margin:0;
-}
 </style>
 <body>
 <script>
- window.fbAsyncInit = function() {
+window.fbAsyncInit = function() {
     FB.init({
         appId   : '466465463517234',
         oauth   : true,
@@ -54,19 +50,7 @@ function fb_login(){
 }());
 </script>
 
-<!--
-  Below we include the Login Button social plugin. This button uses
-  the JavaScript SDK to present a graphical Login button that triggers
-  the FB.login() function when clicked.
--->
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<a href="#" onclick="fb_login();" style="margin:0; padding:0;" ><input type="button" value="Try Facebook photoTags®" style=" cursor:pointer; margin-left:15px; width:200px; padding-top:3px; padding-bottom:3px; border-radius:3px; border:0; background-color:rgb(71,99,158); color:white;" /></a>
-
-<div id="status">
-</div>
+<a href="#" onclick="fb_login();">link</a>
 
 </body>
 </html>
