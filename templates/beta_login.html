@@ -103,6 +103,8 @@
 	function requestCallback(response) {
 		// Handle callback here
 	}
+
+	FB.login();
 </script>
 
 <!--
@@ -111,7 +113,7 @@
   the FB.login() function when clicked.
 -->
 
-<a onclick="FB.login();">link</a>
+<a onclick="">link</a>
 <fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 </fb:login-button>
 
