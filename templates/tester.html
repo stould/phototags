@@ -1,6 +1,23 @@
 <html>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script src="script.js"></script>
+	<script>
+		$(function(){
+			$('form#form-msg').submit(function(){
+				var jqxhr = $.get( "http://echo.jsontest.com/key/value/one/two", function() {
+				  alert( "success" );
+				})
+				  .done(function() {
+					alert( "second success" );
+				  })
+				  .fail(function() {
+					alert( "error" );
+				  })
+				  .always(function() {
+					
+				  });
+			});
+		});
+	</script>
 	<body>		
 		<form id="form-msg" action="" method="post" enctype="multipart/form-data">
 			Entrada: <input type="text" name="mensagem" />
