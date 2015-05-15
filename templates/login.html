@@ -79,25 +79,23 @@ window.fbAsyncInit = function() {
 // Here we run a very simple test of the Graph API after login is
 // successful.  See statusChangeCallback() for when this call is made.
 // Modificado por aajjbb
-function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-	var username;
-
-	FB.api('/me', function(response) {
-		username = response.username;
-	});
-	
-	FB.getLoginStatus(function(response) {
-		if (response.status === 'connected') {
-			var id = response.authResponse.userID;
-			var access_token = response.authResponse.accessToken;
-
-			$.ajax({
-				url: 'phototags.herokuapp.com/addtoken/' + id + '/' + username + '/' + access_token
-			});
-		}
-	});
-}
+$(function(){
+    //qundo envia o formulario cujo id = form-msg, faz chamda ajax
+    $('form#form-msg').submit(function(){
+        var url = '';
+        $.ajax({
+            type: 'GET',
+            url: url,
+            async: false,
+            success: function(json) {
+                window.alert(json);
+            },
+            error: function(e) {
+                console.log(e.message);
+            }
+        });
+    });
+});
 </script>
 
 <!--
@@ -111,6 +109,8 @@ function testAPI() {
 
 <div id="status">
 </div>
-
+<form id="form-msg" action="" method="get" enctype="multipart/form-data">
+	<button id="action-button">Click me to load info!</button>
+</form>	
 </body>
 </html>
