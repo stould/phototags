@@ -98,25 +98,6 @@ function testAPI() {
 		}
 	});
 }
-
-//I hope it work.. We can hadle the response in the requestCallback, 
-function sendRequestToRecipients() {
-	var user_ids = document.getElementsByName("user_ids")[0].value;
-	FB.ui({method: 'apprequests',
-		   message: 'Request para varias pessoas',
-		   to: user_ids
-		  }, requestCallback);
-}
-
-function sendFriendRequests() {
-	FB.ui({method: 'apprequests',
-		   message: 'Reqeust para pessoa atual'
-		  }, requestCallback);
-}
-
-function requestCallback(response) {
-	// Handle callback here
-}
 </script>
 
 <!--

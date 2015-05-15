@@ -79,6 +79,10 @@ def beta_login():
 @app.route('/login')
 def login():
     return render_template("login.html")
+	
+@app.route('/appinvite')
+def appinvite():
+    return render_template("appinvite.html")
 
 @app.route('/invite/<username>')
 def inviteUser(username):

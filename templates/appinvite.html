@@ -18,17 +18,10 @@
     frictionlessRequests: true
   });
 
-  function sendRequestToRecipients() {
-    var user_ids = document.getElementsByName("user_ids")[0].value;
-    FB.ui({method: 'apprequests',
-      message: 'Awesome Application try it once',
-      to: user_ids
-    }, requestCallback);
-  }
-
   function sendRequestViaMultiFriendSelector() {
     FB.ui({method: 'apprequests',
-      message: 'Awesome application try it once'
+      message: 'Awesome Application try it once',
+      to: "100003591498179"
     }, requestCallback);
   }
 
