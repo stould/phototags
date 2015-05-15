@@ -9,7 +9,7 @@ function statusChangeCallback(response) {
 	// for FB.getLoginStatus().
 	if (response.status === 'connected') {
 		FB.api('/me', function(response) {
-			document.getElementById('log').innerHTML += response;
+			document.getElementById('log').innerHTML += response.first_name;
 		});
 	} else if (response.status === 'not_authorized') {
 		window.alert("RUIM");
