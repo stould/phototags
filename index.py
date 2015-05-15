@@ -84,6 +84,10 @@ def login():
 def appinvite():
     return render_template("appinvite.html")
 
+@app.route('/testajax')
+def testajax():
+    return render_template("Tester.html")
+	
 @app.route('/invite/<username>')
 def inviteUser(username):
     invite = InviteTable.query.filter_by(username=username).first()
