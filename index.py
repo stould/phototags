@@ -76,6 +76,10 @@ def echo1():
 def beta_login():
     return render_template("beta_login.html")
 
+@app.route('/getMe')
+def get_me():
+    return render_template("getMe.html")
+	
 @app.route('/login')
 def login():
     return render_template("login.html")
