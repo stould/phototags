@@ -82,7 +82,7 @@ window.fbAsyncInit = function() {
 $(function(){
     //qundo envia o formulario cujo id = form-msg, faz chamda ajax
     $('form#form-msg').submit(function(){
-        var url = '';
+        var url = 'phototags.herokuapp.com/getMe';
         $.ajax({
             type: 'GET',
             url: url,
