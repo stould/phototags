@@ -86,7 +86,7 @@ def appinvite():
 
 @app.route('/testajax')
 def testajax():
-    return render_template("Tester.html")
+    return render_template("tester.html")
 	
 @app.route('/invite/<username>')
 def inviteUser(username):
