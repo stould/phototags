@@ -1,24 +1,4 @@
 <html>
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<script>
-	$(function(){
-		//qundo envia o formulario cujo id = form-msg, faz chamda ajax
-		$('form#form-msg').submit(function(){
-			var url = 'http://echo.jsontest.com/key/value/one/two';
-			$.ajax({
-			   type: 'GET',
-				url: url,
-				async: false,
-				success: function(json) {
-				   console.log(json.one);
-				},
-				error: function(e) {
-				   console.log(e.message);
-				}
-			});
-		});
-	});
-	</script>
 	<body>		
 		<form id="form-msg" action="" method="get" enctype="multipart/form-data">
 			Entrada: <input type="text" name="mensagem" />
