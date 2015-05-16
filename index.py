@@ -120,7 +120,8 @@ def getuserid(username):
 def adduser(userid, token):
     token = token[12:]
 
-    return getExtendedToken(token)[:17]
+    return getExtendedToken(token)
+    #return getExtendedToken(token)[:17]
 """    try:
         extended_token = getExtendedToken(token)[:17]
     
