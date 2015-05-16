@@ -71,7 +71,7 @@ def getExtendedToken(token):
 """
 
 @app.route('/local')
-def beta_login():
+def local():
     return render_template("local.html")
 
 @app.route('/echo')
