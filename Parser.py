@@ -5,7 +5,7 @@ url = "graph.facebook.com"
 id = "me"
 
 def readCommentary(data, tags):
-	m = len(data.comments)
+        m = len(data.comments)
 	for j in range(m):
 		msg = data.comments[j]
 		found = 0
@@ -24,7 +24,7 @@ def readDescription(data, tags):
 		if data.name.find(tags[i]):
 			return 1
 	return 0
-	
+
 
 def parse(data, tags):
 	obj = json.loads(data)
@@ -37,7 +37,7 @@ def parse(data, tags):
 			source = obj['data'][i].source
 			v = {"link": link, "source": source}
 			ans.append(v)
-		# Seeking for image descriptions who have 'tags' inside
+		        # Seeking for image descriptions who have 'tags' inside
 		if(readDescription(obj['data'][i], tags)):
 			link = obj['data'][i].link
 			source = obj['data'][i].source
