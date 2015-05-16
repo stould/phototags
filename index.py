@@ -129,7 +129,7 @@ def adduser(userid, token):
             except:
                 return json.dumps({"status": 0, "message": "error inserting user token"})
             else:
-            return json.dumps({"status": 0, "message": "invalid initial token"});
+                return json.dumps({"status": 0, "message": "invalid initial token"});
     except:
         return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})
 
