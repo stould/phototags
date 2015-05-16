@@ -12,8 +12,9 @@ def readCommentary(data, tags):
 
 def readDescription(data, tags):
 	for i in range (len(tags)):
-		if data['name'] and data['name'].find(tags[i]):
-			return 1
+                pass
+		#if data['name'] and data['name'].find(tags[i]):
+		#	return 1
 	return 0
 	
 
