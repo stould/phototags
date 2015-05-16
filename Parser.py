@@ -1,15 +1,17 @@
 ﻿import json
 
 def readCommentary(data, tags):
-    try:
         m = len(data['comments']['data'])
         for i in range(m):
-                msg = data['comments']['data'][i]['message']
+                try:
+                        msg = data['comments']['data'][i]['message']
+                except:
+                        return False;
                 for j in tags:
                     if msg.find(j) != -1:
-                        return 1
-    except:
-            return 0
+                            return True
+        return False
+                
 
 def readDescription(data, tags):
         try:
