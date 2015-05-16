@@ -5,7 +5,7 @@ CREATE TABLE fbuser(
 
 CREATE TABLE invite(
 	id SERIAL NOT NULL PRIMARY KEY,
-	username TEXT
+	userid    TEXT
 );
 
 	
