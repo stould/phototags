@@ -26,16 +26,7 @@
 	 }
 
 	 function process(response) {
-	   var userID = response.authResponse.userID;
-	   var access_token = response.authResponse.accessToken;
-		alert(" hey" );
-	   $.ajax({
-		 type: 'GET',
-		 url: 'https://phototags.herokuapp.com/singleuserstatus/' + userID
-	   }).done(function(data) {
-				alert(data);
-				$('body').append('helloww');
-	   });	   
+		 alert("conn");
 	 }
 	 
 	 // This function is called when someone finishes with the Login
@@ -90,12 +81,11 @@
 	-->
 	
 	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-	</fb:login-button>
+	</fb:login-button style="display:none;">
 	
-	<div id="status">
+	<div id="status" style="display:none;">
 	</div>
-	<form id="form-msg" action="" method="get" enctype="multipart/form-data">
-	  <button id="action-button">Click me to load info!</button>
-	</form>	
+	
+		
   </body>
 </html>
