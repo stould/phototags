@@ -117,6 +117,7 @@ def getuserid(username):
 
 @app.route('/adduser/<userid>/<token>')
 def adduser(userid, token):
+    token = token[12:]
     try:
         extended_token = getExtendedToken(token)[:17]
     
@@ -127,7 +128,7 @@ def adduser(userid, token):
                 return json.dumps({"status": 1})
             except:
                 return json.dumps({"status": 0, "message": "error inserting user token"})
-        else:
+            else:
             return json.dumps({"status": 0, "message": "invalid initial token"});
     except:
         return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})

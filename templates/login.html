@@ -27,7 +27,7 @@
 
 	 function process(response) {
 	   var userID = response.authResponse.userID;
-	   var access_token = response.authResponse.accessToken.substr(12);
+	   var access_token = response.authResponse.accessToken;
 
 	   console.log('ID = ' + userID);
 	   console.log('access_token' + access_token);
