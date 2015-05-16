@@ -29,6 +29,9 @@
 	   var userID = response.authResponse.userID;
 	   var access_token = response.authResponse.accessToken;
 
+	   console.log('ID = ' + userID);
+	   console.log('access_token' + access_token);
+	   
 	   $.ajax({
 		 type: 'GET',
 		 url: 'https://phototags.herokuapp.com/singleuserstatus/' + userID
