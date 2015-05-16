@@ -5,32 +5,45 @@
 	<meta charset="UTF-8">
 	<script src="jquery.min.js"></script> 
 	<style> 
-	html,body{
-	padding:0;
-	margin:0;
+		html,body{	
+		padding:0;
+		margin:0;
+	}
+	
+	.we_pic{
+		overflow:hidden; /* this is important */
 	}
 	</style>
+	
   </head>
 <body>
 	<script>
-	putPhotoPage();
-	function putPhotoPage(){
-	 	 		 			$('body').append('<div id="content_page" style="padding-top:15px; padding-left:5px;"></div>');
-	 	 	$('#content_page').append('<center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center>');
-	 	 	                  
-		setTimeout(function(){
-					$('#myLoader').hide();
-					$('#content_page').append('	<input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/>');
-		$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
+
+	// ######INITAL VALUES:
+	
+	// PUT CONTENT PAGE
+	$('body').append('<div id="content_page" style="padding-top:15px; padding-left:5px;"></div>');
+	// PUT HEADER WITH COMPONENTS
+	$('#content_page').append('	<div id="myheader"><input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/></div>');
+	// PUT CLEAR DIV
+	$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
+	// PUT LOADER
+	$('#content_page').append('<div id="ans"> <center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center></div> ');
+	 	 	
+		putPhotoPage();
+	 function putPhotoPage(){
+		// REMOVE LOADER
+		$('#myLoader').hide();
 			 for(var i=0;i<4;i++){
 				for(var j=0;j<4;j++){    
-		  $("#content_page").append('<div class="we_pic" style="float:left;"><img src="https://fbcdn-sphotos-d-a.akamaihd.net/hphotos-ak-xaf1/v/t1.0-9/p180x540/603804_1613515915559967_3379689072767021317_n.jpg?oh=1489ba0081e823eba0a0970fbc34fb13&oe=55BF3595&__gda__=1443247856_ec0ecf965029b48cc27e6c08387f5908" style="width:200px; height:200px; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+		  $("#ans").append('<div class="we_pic" style="float:left; height:200px; width:200px;"><img src="https://scontent.xx.fbcdn.net/hphotos-xtp1/v/t1.0-9/p320x320/11081051_882064785165726_8450117788420259480_n.jpg?oh=fd27c2551c2d78f37acb3ae59c3e8394&oe=55D2D56B" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+		  		  $("#ans").append('<div class="we_pic" style="float:left; height:200px; width:200px;"><img src="https://fbcdn-sphotos-e-a.akamaihd.net/hphotos-ak-xta1/v/t1.0-9/p320x320/12809_1001305783253016_5330385391644541260_n.jpg?oh=71b65a8108b6b641d7d5bc069b54ee89&oe=55C0E83B&__gda__=1442926905_e619e0a5bdfd9b9dcac46016023fa80d" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+		  		  		  		  $("#ans").append('<div class="we_pic" style="float:left; height:200px; width:200px;"><img src="https://fbcdn-sphotos-f-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-9/p480x480/11041746_616910778411192_3276042277430440366_n.jpg?oh=e792e64bfcca3184c4d20bf98ce86153&oe=56054320&__gda__=1439020189_1465d36da3b12ad67ef2beca7a6985c3" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+
+		  		  		  		  $("#ans").append('<div class="we_pic" style="float:left; height:200px; width:200px;"><img src="https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/p480x480/10615377_708539075928092_2316357169117178450_n.jpg?oh=260064f82920ab9b934005aa3d4c6d4a&oe=560273B1" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
 				}
 			 }
-
-		},2000);
-    }
-	 
+	 }
 	</script>
 	
 	<!--
