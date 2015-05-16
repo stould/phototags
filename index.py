@@ -118,6 +118,8 @@ def getuserid(username):
 @app.route('/adduser/<userid>/<token>')
 def adduser(userid, token):
     token = token[12:]
+
+    return getExtendedToken(token)[:17]
     try:
         extended_token = getExtendedToken(token)[:17]
     
