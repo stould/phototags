@@ -12,9 +12,11 @@ margin:0;
 </style>
 <body>
 <script>
+		
+	
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-	alert(response.authResponse.accessToken);
+	//alert(response.authResponse.accessToken);
     console.log('statusChangeCallback');
     console.log(response);
     // The response object is returned with a status field that lets the
@@ -44,6 +46,17 @@ margin:0;
     FB.getLoginStatus(function(response) {
     	if(response.authResponse){
     		alert(response.authResponse.accessToken);
+    	}
+      statusChangeCallback(response);
+    });
+  }
+
+    function initCheck() {
+    FB.getLoginStatus(function(response) {
+    	if(response.status === 'connected')){
+    		alert("renderiza componentes pq ja esta conectado");
+    	}else{
+			alert("n conectado, renderizar botao de login");
     	}
       statusChangeCallback(response);
     });
@@ -122,7 +135,7 @@ margin:0;
   the JavaScript SDK to present a graphical Login button that triggers
   the FB.login() function when clicked.
 -->
-<a onclick="checkLoginState();" >asasd<a/>
+
 <a onclick="FB.login();"><input type="button" value="Try Facebook photoTags®" style=" cursor:pointer; margin-left:15px; width:200px; padding-top:3px; padding-bottom:3px; border-radius:3px; border:0; background-color:rgb(71,99,158); color:white;" /></a>
 
 <div id="status">
