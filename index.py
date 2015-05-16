@@ -123,12 +123,9 @@ def adduser(userid, token):
         extended_token = getExtendedToken(token)[:17]
     
         if extended_token != -1:        
-            try:
-                db.session.add(FBuserTable(userid, extended_token))
-                db.session.commit()
-                return json.dumps({"status": 1})
-            except:
-                return json.dumps({"status": 0, "message": "error inserting user token"})
+            db.session.add(FBuserTable(userid, extended_token))
+            db.session.commit()
+            return json.dumps({"status": 1})
             else:
                 return json.dumps({"status": 0, "message": "invalid initial token"});
     except:
