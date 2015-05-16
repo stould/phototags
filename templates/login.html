@@ -13,8 +13,10 @@
 	   console.log(response);
 
 	   if (response.status === 'connected') {
-		 process(response);		 
+		 process(response);
+		 //Show photos and more info
 	   } else if (response.status === 'not_authorized') {
+		 //Process user login
 		 document.getElementById('status').innerHTML = 'Please log ' +
 													   'into this app.';
 	   } else {
@@ -33,13 +35,17 @@
 	   }).done(function(data) {
 		 console.log(data);
 		 
-		 if (data.status == 1) {		   
-							   }
-		 
-	   });
-	   
-	   $.ajax({
-		 url: 'https://phototags.herokuapp.com/' + userID + 
+		 if (data.status == 0) {
+		   $.ajax({
+			 url: 'https://phototags.herokuapp.com/adduser' + userID + '/' + access_token
+		   }).done(function(data) {
+			 console.log('User successfully inserted in database');
+		   }).fail(function() {
+			 console.log('An error occurred while inserting userID' + userID + ' in database');
+		   });	   		   
+		 } else {
+		   console.log('User ' + userID + ' already present in databse');
+		 }
 	   });	   
 	 }
 	 

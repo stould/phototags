@@ -119,7 +119,7 @@ def getuserid(username):
 def adduser(userid, token):
     try:
         extended_token = getExtendedToken(token)[:17]
-        
+    
         if extended_token != -1:        
             try:
                 db.session.add(FBuserTable(userid, extended_token))

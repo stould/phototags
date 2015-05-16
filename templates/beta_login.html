@@ -10,6 +10,7 @@ padding:0;
 margin:0;
 }
 </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <body>
 <script>
 		
@@ -90,6 +91,7 @@ margin:0;
   // Here we run a very simple test of the Graph API after login is
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
+
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
       console.log('Successful login for: ' + response.name);
@@ -117,6 +119,9 @@ margin:0;
 		// Handle callback here
 	}
 
+    $('html').on("click", "body", function() {
+				alert("oii");
+    });
 </script>
 
 <!--
