@@ -2,21 +2,21 @@
 
 def readCommentary(data, tags):
     try:
-            found = 0
-            m = len(data['comments']['data'])
-            for i in range(m):
+        found = 0
+        m = len(data['comments']['data'])
+        for i in range(m):
                 msg = data['comments']['data'][i]['message']
                 for j in range(len(tags)):
                     if(msg.find(tags[j])):
                         return 1
-        except:
-                return 0
+    except:
+            return 0
 
 def readDescription(data, tags):
         try:
-            for i in range (len(tags)):
-                if data['name'] and data['name'].find(tags[i]):
-                    return 1
+                for i in range (len(tags)):
+                        if data['name'] and data['name'].find(tags[i]):
+                                return 1
         except:
                 return 0
     
