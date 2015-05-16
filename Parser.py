@@ -1,6 +1,8 @@
 ﻿import json
 
 def readCommentary(data, tags):
+        if data['comments']['data'] == None:
+                return False
         n = len(tags)
         m = len(data['comments']['data'])
         for i in range(m):
@@ -17,12 +19,13 @@ def readCommentary(data, tags):
                 
 
 def readDescription(data, tags):
-        try:
-                for i in tags:
-                        if data['name'] and data['name'].find(i) != -1:
-                                return 1
-        except:
-                return 0
+        if data['name'] == None:
+                return False
+        
+        for i in tags:
+                if data['name'] and data['name'].find(i) != -1:
+                        return 1
+        return 0
     
 
 def parse(data, tags):
