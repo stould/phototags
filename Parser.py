@@ -1,7 +1,7 @@
 import json
 
 def readCommentary(data, tags):
-        m = len(data.comments)
+        m = len(data['comments'])
         for j in range(m):
                 msg = data.comments[j]
         found = 0
