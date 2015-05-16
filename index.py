@@ -61,10 +61,10 @@ Gets a long live token
 """
 def getExtendedToken(token):
     response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s"
-                       % (APP_ID, APP_SECRET, token))
+                       % (APP_ID, APP_SECRET, token)).decode("utf-8")
     
-    if response.startswith(b'access_token'):
-        return str(response)[15:]
+    if response.startswith('access_token'):
+        return str(response)[12:]
     else:
         return -1
 
@@ -176,6 +176,6 @@ def getUserInfo(username):
 def getphotos(username):
     user = FBuserTable.query.filter_by(username=username).first()
     
-    response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token))
-    
+    response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
+
     return str(response.decode('utf-8'))    
