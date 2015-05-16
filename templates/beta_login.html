@@ -89,12 +89,20 @@
 	 }
 
 	 function putPhotoPage(){
-	 	alert("oi");
 		$.ajax({
 		 type: 'GET',
 		 url: 'https://phototags.herokuapp.com/local'
 	   }).done(function(data) {
-	   		alert(data);
+				 	// REMOVE LOADER
+					$('#myLoader').hide();
+					// PUT COMPONENTS AND PHOTOS
+					$('#content_page').append('	<input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/>');
+		$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
+			 for(var i=0;i<4;i++){
+				for(var j=0;j<4;j++){    
+		  $("#content_page").append('<div class="we_pic" style="float:left;"><img src="'+data+'" style="width:200px; height:200px; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+				}
+			 }
 		 });
 	 }
   
