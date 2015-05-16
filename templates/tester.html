@@ -2,13 +2,12 @@
 <head id="Head1">
     <title></title>
     <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js"></script>
+    <script>
+		var url ="https://www.facebook.com/aajjbbK/photos";
+		var x = url.match(/https?\:\/\/(?:www\.)?facebook\.com\/(\d+|[A-Za-z0-9\.]+)\/?/);
+		alert(x[1]);
+    </script>
 </head>
 <body>
-    <form id="form1">
-    <span>Enter your Facebook Id or Username</span>
-    <input type = "text" id = "fbId" />
-    <input type = "button" value = "Get Profile" id = "demo" />
-    <div id = "dv"></div>
-    </form>
 </body>
 </html>
