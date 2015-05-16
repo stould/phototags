@@ -9,8 +9,8 @@ def readCommentary(data, tags):
                 except:
                         return False;
                 for j in tags:
-                    if msg.find(j) != -1:
-                            return msg
+                    if j in msg:
+                            return msg+" "+j
         return False
                 
 
