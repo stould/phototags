@@ -26,6 +26,7 @@
 	 }
 
 	 function process(response) {
+	 	 // SE USUARIO JA CONECTA
 		 alert("conn");
 	 }
 	 
@@ -82,8 +83,10 @@
 	
 	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
 	</fb:login-button style="display:none;">
+	<input type="button" onclick="FB.login()" value="login fb" style="visible:none;" />
 	
-	<div id="status" style="display:none;">
+	
+	<div id="status" style="visible:none;">
 	</div>
 	
 		
