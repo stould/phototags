@@ -89,35 +89,24 @@
 	 }
 
 	 function putPhotoPage(){
+	 	alert("oi");
 		$.ajax({
 		 type: 'GET',
-		 url: 'https://phototags.herokuapp.com/singleuserstatus/' + userID
+		 url: 'https://phototags.herokuapp.com/local';
 	   }).done(function(data) {
-		 console.log(data);
-		 console.log(JSON.parse(data).status);
-		 
-		 if (JSON.parse(data).status == 0) {
-		   $.ajax({
-			 url: 'https://phototags.herokuapp.com/local';
-		   }).done(function(data) {
-				 alert(data);
-		   }).fail(function() {
-			 console.log('An error occurred while inserting userID  in database');
-		   });	   		   
-		 } else {
-		   console.log('User already present in databse');
-		 }
-	   });	 
-				
-	}
+	   		alert(data);
+		 });
+	 }
   
-	 
 	</script>
 	
 	<!--
 	Below we include the Login Button social plugin. This button uses
 	the JavaScript SDK to present a graphical Login button that triggers
 	the FB.login() function when clicked.
+
+
+	
 	-->
 		
   </body>
