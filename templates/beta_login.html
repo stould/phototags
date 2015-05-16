@@ -109,13 +109,25 @@
 		 });
 	 }
 
+	// GET NEW PICS WITH USER TAGS
 	 $('#img_search1').click(function(){
 
 		$("#ans").animate({
          opacity:0
          }, 400, function() {
 					$('#myLoader').show();
-					// request new pics
+							$.ajax({
+								 type: 'GET',
+									 url: 'https://phototags.herokuapp.com/local'
+								}).done(function(data) {
+								// REMOVE LOADER
+								$('#myLoader').hide();
+									 for(var i=0;i<4;i++){
+										for(var j=0;j<4;j++){    
+								  $("#ans").append('<div class="we_pic" style="float:left;height:200px; width:200px; "><img src="'+data+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');
+										}
+									 }
+								 });
          }); 
 
 	 });
