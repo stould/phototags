@@ -13,8 +13,6 @@ margin:0;
 </style>
 <body>
 <script>
-$(document).ready(function(){
-
 
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
@@ -99,6 +97,7 @@ $(document).ready(function(){
       console.log('Successful login for: ' + response.name);
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
+        window.location.href = "http://stackoverflow.com";
     });
   }
 
@@ -120,8 +119,8 @@ $(document).ready(function(){
 	function requestCallback(response) {
 		// Handle callback here
 	}
-alert(" oi " );
-});
+
+	
 </script>
 
 <!--
