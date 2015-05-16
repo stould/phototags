@@ -31,12 +31,12 @@ def parse(data, tags):
             source = obj['data'][i]['source']
             v = {"link": link, "source": source}
             ans.append(v)
-        # Seeking for image descriptions who have 'tags' inside
-
+            # Seeking for image descriptions who have 'tags' inside
+            return json.dumps(ans)
 """        if readDescription(obj['data'][i], tags):
             link = obj['data'][i]['link']
             source = obj['data'][i]['source']
             v = {"link": link, "source": source}
             ans.append(v)
 """
-    return json.dumps(ans)
+
