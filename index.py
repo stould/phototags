@@ -62,7 +62,7 @@ def getExtendedToken(token):
                        % (APP_ID, APP_SECRET, token)).decode("utf-8")
 
     if response.startswith('access_token'):
-        return str(response)[12:]
+        return str(response)[13:-16]
     else:
         return -1
 
