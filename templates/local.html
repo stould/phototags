@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>	
+	<title>Facebook Login JavaScript Example</title>
+	<meta charset="UTF-8">
+	<script src="jquery.min.js"></script> 
+	<style> 
+	html,body{
+	padding:0;
+	margin:0;
+	}
+	</style>
+  </head>
+<body>
+	<script>
+	putPhotoPage();
+	function putPhotoPage(){
+	 	 	$('body').append('<div id="content_page" style="padding-top:15px; padding-left:5px;"></div>');
+	 	 	      $('#content_page').append('	<input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/>');
+		$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
+    for(var i=0;i<4;i++){
+      for(var j=0;j<4;j++){    
+
+        $("#content_page").append('<div class="we_pic" style="float:left;"><img src="imgteste.png" style="float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+      }
+    }
+    }
+	 
+	</script>
+	
+	<!--
+	Below we include the Login Button social plugin. This button uses
+	the JavaScript SDK to present a graphical Login button that triggers
+	the FB.login() function when clicked.
+	-->
+	
+		
+  </body>
+</html>
