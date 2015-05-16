@@ -13,19 +13,22 @@
   </head>
   <body>
 	<script>
-	// INITAL VALUES:
+
+	// ######INITAL VALUES:
 	// PUT CONTENT PAGE
 	// PUT LOADER
+	
 	$('body').append('<div id="content_page" style="padding-top:15px; padding-left:5px;"></div>');
-	 	 	$('#content_page').append('<center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center> ');
+	$('#content_page').append('	<div id="myheader"><input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/></div>');
+	$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
+	$('#content_page').append('<div id="ans"> <center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center></div> ');
 	 	 	
-	 // This is called with the results from from FB.getLoginStatus()
 	function statusChangeCallback(response) {
 	   console.log('statusChangeCallback');
 	   console.log(response);
 
 	   if (response.status === 'connected') {
-		 process(response);
+		  process(response);
 	   } else if (response.status === 'not_authorized') {
 		   putLoginPage();
 	   } else {
@@ -36,10 +39,7 @@
 	 function process(response) {
 		putPhotoPage();
 	 }
-	 
-	 // This function is called when someone finishes with the Login
-	 // Button.  See the onlogin handler attached to it in the sample
-	 // code below
+
 	 function checkLoginState() {
        FB.getLoginStatus(function(response) {
 		 statusChangeCallback(response);
@@ -55,17 +55,6 @@
 		 version    : 'v2.3' // use version 2.3
 	   });
 	   
-	   // Now that we've initialized the JavaScript SDK, we call 
-	   // FB.getLoginStatus().  This function gets the state of the
-	   // person visiting this page and can return one of three states to
-	   // the callback you provide.  They can be:
-			   //
-	   // 1. Logged into your app ('connected')
-	   // 2. Logged into Facebook, but not your app ('not_authorized')
-	   // 3. Not logged into Facebook and can't tell if they are logged into
-	   //    your app or not...
-			   //
-	   // These three cases are handled in the callback function
 	   
 	   FB.getLoginStatus(function(response) {
 		 statusChangeCallback(response);
@@ -89,18 +78,16 @@
 	 }
 
 	 function putPhotoPage(){
+	 	// this function get all pics and put components inside div
 		$.ajax({
 		 type: 'GET',
 		 url: 'https://phototags.herokuapp.com/local'
 	   }).done(function(data) {
-				 	// REMOVE LOADER
-					$('#myLoader').hide();
-					// PUT COMPONENTS AND PHOTOS
-					$('#content_page').append('	<input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/>');
-		$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
+		// REMOVE LOADER
+		$('#myLoader').hide();
 			 for(var i=0;i<4;i++){
 				for(var j=0;j<4;j++){    
-		  $("#content_page").append('<div class="we_pic" style="float:left;"><img src="'+data+'" style="width:200px; height:200px; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+		  $("#ans").append('<div class="we_pic" style="float:left;"><img src="'+data+'" style="width:200px; height:200px; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
 				}
 			 }
 		 });
