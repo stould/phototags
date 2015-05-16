@@ -119,17 +119,14 @@ def getuserid(username):
 
 @app.route('/adduser/<userid>/<token>')
 def adduser(userid, token):
-    try:
-        extended_token = getExtendedToken(token)[:17]
+    extended_token = getExtendedToken(token)[:17]
     
-        if extended_token != -1:        
-            db.session.add(FBuserTable(userid, extended_token))
-            db.session.commit()
-            return json.dumps({"status": 1})
-        else:
-            return json.dumps({"status": 0, "message": "invalid initial token"});
-    except:
-        return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})
+    if extended_token != -1:        
+        db.session.add(FBuserTable(userid, extended_token))
+        db.session.commit()
+        return json.dumps({"status": 1})
+    else:
+        return json.dumps({"status": 0, "message": "invalid initial token"});
     
 """
 status =>
