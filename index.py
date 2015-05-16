@@ -115,14 +115,14 @@ def getuserid(username):
     except KeyError:
         return json.dumps({"status" : 0})    
 
-@app.route('/adduser/<userid>/<username>/<token>')
-def adduser(userid, username, token):
+@app.route('/adduser/<userid>/<token>')
+def adduser(userid, token):
     try:
-        extended_token = getExtendedToken(token)
+        extended_token = getExtendedToken(token)[:17]
         
         if extended_token != -1:        
             try:
-                db.session.add(FBuserTable(userid, username, extended_token))
+                db.session.add(FBuserTable(userid, extended_token))
                 db.session.commit()
                 return json.dumps({"status": 1})
             except:
@@ -150,6 +150,10 @@ def getUserStatus(username):
         if InviteTable.query.filter_by(username=username).first():
             status = 2
     return status
+
+@app.route('/singleuserstatus/<username>')
+def singleuserstatus(username):
+    return json.dumps({"status" : getUserStatus(username)})
 
 @app.route('/userstatus/<username_1>/<username_2>')
 def userstatus(username_1, username_2):
