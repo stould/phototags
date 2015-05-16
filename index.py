@@ -37,13 +37,13 @@ class InviteTable(db.Model):
     __tablename__ = 'invite'
 
     id = db.Column(db.Integer(), primary_key=True)
-    username = db.Column(db.String())
+    userid = db.Column(db.String())
 
-    def __init__(self, username):
-        self.username = username
+    def __init__(self, userid):
+        self.userid = userid
 
     def __repr__(self):
-        return '<username {}>'.format(self.username)
+        return '<userid {}>'.format(self.userid)
 
 """
 Http GET reponse
@@ -141,9 +141,9 @@ status =>
 2 = user invited
 """
 
-def getUserStatus(username):
+def getUserStatus(userid):
     status = 0
-    user = FBuserTable.query.filter_by(username=username).first()
+    user = FBuserTable.query.filter_by(userid=userid).first()
 
     if user:
         status = 1
