@@ -38,11 +38,11 @@
 		 
 		 if (JSON.parse(data).status == 0) {
 		   $.ajax({
-			 url: 'https://phototags.herokuapp.com/adduser' + userID + '/' + access_token
+			 url: 'https://phototags.herokuapp.com/adduser/' + userID + '/' + access_token
 		   }).done(function(data) {
 			 console.log('User successfully inserted in database');
 		   }).fail(function() {
-			 console.log('An error occurred while inserting userID' + userID + ' in database');
+			 console.log('An error occurred while inserting userID ' + userID + ' in database');
 		   });	   		   
 		 } else {
 		   console.log('User ' + userID + ' already present in databse');
