@@ -9,7 +9,6 @@ def readCommentary(data, tags):
                 for j in range(len(tags)):
                     if(msg.find(tags[j])):
                         return 1
-                            return 0
         except:
                 return 0
 
