@@ -9,18 +9,23 @@
 	padding:0;
 	margin:0;
 	}
+	.we_pic{
+		overflow:hidden; /* this is important */
+	}
 	</style>
   </head>
   <body>
 	<script>
 
 	// ######INITAL VALUES:
-	// PUT CONTENT PAGE
-	// PUT LOADER
 	
+	// PUT CONTENT PAGE
 	$('body').append('<div id="content_page" style="padding-top:15px; padding-left:5px;"></div>');
+	// PUT HEADER WITH COMPONENTS
 	$('#content_page').append('	<div id="myheader"><input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/></div>');
+	// PUT CLEAR DIV
 	$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
+	// PUT LOADER
 	$('#content_page').append('<div id="ans"> <center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center></div> ');
 	 	 	
 	function statusChangeCallback(response) {
@@ -78,7 +83,7 @@
 	 }
 
 	 function putPhotoPage(){
-	 	// this function get all pics and put components inside div
+	 	// FIRST REQUEST GET ALL PHOTOS
 		$.ajax({
 		 type: 'GET',
 		 url: 'https://phototags.herokuapp.com/local'
@@ -87,7 +92,7 @@
 		$('#myLoader').hide();
 			 for(var i=0;i<4;i++){
 				for(var j=0;j<4;j++){    
-		  $("#ans").append('<div class="we_pic" style="float:left;"><img src="'+data+'" style="width:200px; height:200px; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf"/></div>');
+		  $("#ans").append('<div class="we_pic" style="float:left;height:200px; width:200px; "><img src="'+data+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');
 				}
 			 }
 		 });
