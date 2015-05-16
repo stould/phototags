@@ -34,14 +34,15 @@
 		 url: 'https://phototags.herokuapp.com/singleuserstatus/' + userID
 	   }).done(function(data) {
 		 console.log(data);
+		 console.log(JSON.parse(data).status);
 		 
-		 if (data.status == 0) {
+		 if (JSON.parse(data).status == 0) {
 		   $.ajax({
-			 url: 'https://phototags.herokuapp.com/adduser' + userID + '/' + access_token
+			 url: 'https://phototags.herokuapp.com/adduser/' + userID + '/' + access_token
 		   }).done(function(data) {
 			 console.log('User successfully inserted in database');
 		   }).fail(function() {
-			 console.log('An error occurred while inserting userID' + userID + ' in database');
+			 console.log('An error occurred while inserting userID ' + userID + ' in database');
 		   });	   		   
 		 } else {
 		   console.log('User ' + userID + ' already present in databse');
@@ -92,27 +93,6 @@
        js.src = "//connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
 	 }(document, 'script', 'facebook-jssdk'));
-	 
-	 // Here we run a very simple test of the Graph API after login is
-	 // successful.  See statusChangeCallback() for when this call is made.
-	   // Modificado por aajjbb
-	 $(function(){
-       //qundo envia o formulario cujo id = form-msg, faz chamda ajax
-       $('form#form-msg').submit(function(){
-         var url = 'getMe';
-         $.ajax({
-           type: 'GET',
-           url: url,
-           async: false,
-           success: function(json) {
-             window.alert(json);
-           },
-           error: function(e) {
-             console.log(e.message);
-           }
-         });
-       });
-	 });
 	</script>
 	
 	<!--
