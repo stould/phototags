@@ -69,6 +69,11 @@ def getExtendedToken(token):
     else:
         return -1
 """
+
+@app.route('/local')
+def beta_login():
+    return render_template("local.html")
+
 @app.route('/echo')
 def echo1():
     return render_template("echo.html")
