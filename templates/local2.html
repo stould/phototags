@@ -25,7 +25,6 @@
   </head>
 <body>
 	<script>
-
 	// ######INITAL VALUES:
 	
 	// PUT CONTENT PAGE
@@ -35,9 +34,11 @@
 	// PUT CLEAR DIV
 	$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
 	// PUT LOADER
-	$('#content_page').append('<div id="ans"> <center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center></div> ');
-	 	 	
-		putPhotoPage();
+		$('#content_page').append('	<center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center>');
+	// PUT DIV ANS		
+	$('#content_page').append('<div id="ans"></div> ');
+
+	putPhotoPage();
 	 function putPhotoPage(){
 		// REMOVE LOADER
 		$('#myLoader').hide();
@@ -51,6 +52,17 @@
 				}
 			 }
 	 }
+	 $('#img_search1').click(function(){
+
+		$("#ans").animate({
+         opacity:0
+         }, 400, function() {
+					$('#myLoader').show();
+					// request new pics
+         }); 
+
+	 });
+	 
 	</script>
 	
 	<!--
