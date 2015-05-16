@@ -76,15 +76,18 @@
 	 }(document, 'script', 'facebook-jssdk'));
 
 	 function putLoginPage(){
-	 	$('body').append('	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>');
+		 // REMOVE LOADER
+		$('#myLoader').hide();
+		// PUT LOGIN BUTTON
+	 	$('#content_page').append('	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>');
 	 }
 
 	 function putPhotoPage(){
-	 	 		 			$('body').append('<div id="content_page" style="padding-top:15px; padding-left:5px;"></div>');
-	 	 	$('#content_page').append('<center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center>');
 	 	 	                  
 		setTimeout(function(){
+					// REMOVE LOADER
 					$('#myLoader').hide();
+					// PUT COMPONENTS AND PHOTOS
 					$('#content_page').append('	<input id="search_tool1" style="width:360px; margin-left:5px; margin-right:10px;" type="text" placeholder=" Procure pessoas, coisas e locais "/><span id="img_search1"><img src="http://www.japantimes.co.jp/wp-content/themes/jt_theme/library/img/search.png" style=" margin-left:15px; width:12px; height:12px;"/>');
 		$('#content_page').append('<div style="clear:both; margin-bottom:10px;"></div>');
 			 for(var i=0;i<4;i++){
@@ -103,7 +106,11 @@
 	the JavaScript SDK to present a graphical Login button that triggers
 	the FB.login() function when clicked.
 	-->
-	
+	// INITAL VALUES:
+	// PUT CONTENT PAGE
+	// PUT LOADER
+	$('body').append('<div id="content_page" style="padding-top:15px; padding-left:5px;"></div>');
+	 	 	$('#content_page').append('<center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center>');
 		
   </body>
 </html>
