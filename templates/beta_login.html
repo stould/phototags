@@ -10,6 +10,7 @@ padding:0;
 margin:0;
 }
 </style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <body>
 <script>
 		
@@ -24,7 +25,14 @@ margin:0;
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
+
+		$(document).ready(function(){
+		// remove loader
+      // coloca componente input
+			alert("oi");
+		});
+      
+      //testAPI();
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       document.getElementById('status').innerHTML = 'Please log ' +
