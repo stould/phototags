@@ -14,20 +14,16 @@
 
 	   if (response.status === 'connected') {
 		 process(response);
-		 //Show photos and more info
 	   } else if (response.status === 'not_authorized') {
-		 //Process user login
-		 document.getElementById('status').innerHTML = 'Please log ' +
-													   'into this app.';
+		   putLoginPage();
 	   } else {
-		 document.getElementById('status').innerHTML = 'Please log ' +
-													   'into Facebook.';
+			putLoginPage();
 	   }
 	 }
 
 	 function process(response) {
-	 	 // SE USUARIO JA CONECTA
-		 alert("conn");
+		alert("Conn");
+		putPhotoPage();
 	 }
 	 
 	 // This function is called when someone finishes with the Login
@@ -73,6 +69,15 @@
        js.src = "//connect.facebook.net/en_US/sdk.js";
        fjs.parentNode.insertBefore(js, fjs);
 	 }(document, 'script', 'facebook-jssdk'));
+
+	 function putLoginPage(){
+	 	$('body').append('	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status" style="visible:none;"></div>');
+	 }
+
+	 function putPhotoPage(){
+	 	 	$('body').append('PhotoPage Here');
+	 }
+	 
 	</script>
 	
 	<!--
@@ -80,14 +85,6 @@
 	the JavaScript SDK to present a graphical Login button that triggers
 	the FB.login() function when clicked.
 	-->
-	
-	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-	</fb:login-button style="display:none;">
-	<input type="button" onclick="FB.login()" value="login fb" style="visible:none;" />
-	
-	
-	<div id="status" style="visible:none;">
-	</div>
 	
 		
   </body>
