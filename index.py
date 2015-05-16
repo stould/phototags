@@ -94,27 +94,33 @@ def appinvite():
 def testajax():
     return render_template("tester.html")
 	
-@app.route('/invite/<userid>')
-def inviteUser(userid):
-    invite = InviteTable.query.filter_by(userid=userid).first()
+@app.route('/invite/<username>')
+def inviteUser(username):
+    invite = InviteTable.query.filter_by(username=username).first()
 
     if invite:
         return json.dumps({"status": 0, "message": "already invited"})
     else:
-        db.session.add(InviteTable(userid))
+        db.session.add(InviteTable(username))
         db.session.commit()
         return json.dumps({"status": 1})
     
 @app.route('/adduser/<userid>/<token>')
 def adduser(userid, token):
-    extended_token = getExtendedToken(token)[:17]
+    try:
+        extended_token = getExtendedToken(token)
     
-    if extended_token != -1:        
-        db.session.add(FBuserTable(userid, extended_token))
-        db.session.commit()
-        return json.dumps({"status": 1})
-    else:
-        return json.dumps({"status": 0, "message": "invalid initial token"});
+        if extended_token != -1:        
+            try:
+                db.session.add(FBuserTable(userid, extended_token))
+                db.session.commit()
+                return json.dumps({"status": 1})
+            except:
+                return json.dumps({"status": 0, "message": "error inserting user token"})
+            else:
+                return json.dumps({"status": 0, "message": "invalid initial token"});
+    except:
+        return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})
     
 """
 status =>
@@ -129,20 +135,23 @@ def getUserStatus(userid):
 
     if user:
         status = 1
+    else:
+        if InviteTable.query.filter_by(userid=userid).first():
+            status = 2
     return status
 
-@app.route('/singleuserstatus/<userid>')
-def singleuserstatus(userid):
-    return json.dumps({"status" : getUserStatus(userid)})
+@app.route('/singleuserstatus/<username>')
+def singleuserstatus(username):
+    return json.dumps({"status" : getUserStatus(username)})
 
-@app.route('/userstatus/<userid_1>/<userid_2>')
-def userstatus(userid_1, userid_2):
-    return json.dumps({"status_1" : getUserStatus(userid_1), "status_2": getUserStatus(userid_2)})
+@app.route('/userstatus/<username_1>/<username_2>')
+def userstatus(username_1, username_2):
+    return json.dumps({"status_1" : getUserStatus(username_1), "status_2": getUserStatus(username_2)})
     
     
-@app.route('/user/<userid>')
-def getUserInfo(userid):
-    user = FBuserTable.query.filter_by(userid=userid).first()
+@app.route('/user/<username>')
+def getUserInfo(username):
+    user = FBuserTable.query.filter_by(username=username).first()
 
     user['status'] = 1;
     
@@ -151,9 +160,9 @@ def getUserInfo(userid):
     else:
         return json.dumps({"status": 0})
 
-@app.route('/photos/<userid>')
-def getphotos(userid):
-    user = FBuserTable.query.filter_by(userid=userid).first()
+@app.route('/photos/<username>')
+def getphotos(username):
+    user = FBuserTable.query.filter_by(username=username).first()
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
 
