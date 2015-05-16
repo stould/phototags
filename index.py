@@ -63,12 +63,11 @@ def getExtendedToken(token):
     response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s"
                        % (APP_ID, APP_SECRET, token)).decode("utf-8")
 
-    return response
-"""    if response.startswith('access_token'):
+    if response.startswith('access_token'):
         return str(response)[12:]
     else:
         return -1
-"""
+
 @app.route('/echo')
 def echo1():
     return render_template("echo.html")
@@ -120,9 +119,7 @@ def getuserid(username):
 def adduser(userid, token):
     token = token[12:]
 
-    return getExtendedToken(token)
-    #return getExtendedToken(token)[:17]
-"""    try:
+    try:
         extended_token = getExtendedToken(token)[:17]
     
         if extended_token != -1:        
@@ -136,7 +133,7 @@ def adduser(userid, token):
                 return json.dumps({"status": 0, "message": "invalid initial token"});
     except:
         return json.dumps({"status": 0, "message": "error accessing token, perhaps user does not exists or an error happened while acquiring the extended token"})
-"""
+
     
 """
 status =>
