@@ -34,6 +34,7 @@
 		 url: 'https://phototags.herokuapp.com/singleuserstatus/' + userID
 	   }).done(function(data) {
 		 console.log(data);
+		 console.log(JSON.parse(data).status);
 		 
 		 if (JSON.parse(data).status == 0) {
 		   $.ajax({
