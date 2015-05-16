@@ -41,6 +41,7 @@
 			 url: 'https://phototags.herokuapp.com/adduser/' + userID + '/' + access_token
 		   }).done(function(data) {
 			 console.log('User successfully inserted in database');
+			 console.log('Data ' + data);
 		   }).fail(function() {
 			 console.log('An error occurred while inserting userID ' + userID + ' in database');
 		   });	   		   
