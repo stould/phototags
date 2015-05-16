@@ -85,14 +85,14 @@
 		 // REMOVE LOADER
 		$('#myLoader').hide();
 		// PUT LOGIN BUTTON
-	 	$('#content_page').append('	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>');
+	 	$('#content_page').append('	<fb:login-button scope="public_profile,email"  onlogin="checkLoginState();"></fb:login-button><div id="status"></div>');
 	 }
 
 	 function putPhotoPage(){
 	 	alert("oi");
 		$.ajax({
 		 type: 'GET',
-		 url: 'https://phototags.herokuapp.com/local';
+		 url: 'https://phototags.herokuapp.com/local'
 	   }).done(function(data) {
 	   		alert(data);
 		 });
