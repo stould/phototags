@@ -22,7 +22,7 @@
 	 }
 
 	 function process(response) {
-		alert("Conn");
+		alert("Conn2");
 		putPhotoPage();
 	 }
 	 
@@ -71,7 +71,7 @@
 	 }(document, 'script', 'facebook-jssdk'));
 
 	 function putLoginPage(){
-	 	$('body').append('	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status" style="visible:none;"></div>');
+	 	$('body').append('	<fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button><div id="status"></div>');
 	 }
 
 	 function putPhotoPage(){
