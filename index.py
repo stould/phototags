@@ -63,7 +63,7 @@ def getExtendedToken(token):
     response = httpGet("/oauth/access_token?grant_type=fb_exchange_token&client_id=%s&client_secret=%s&fb_exchange_token=%s"
                        % (APP_ID, APP_SECRET, token)).decode("utf-8")
 
-    return response.decode("utf-8")
+    return response
 """    if response.startswith('access_token'):
         return str(response)[12:]
     else:
