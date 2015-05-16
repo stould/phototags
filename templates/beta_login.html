@@ -119,11 +119,9 @@ margin:0;
 		// Handle callback here
 	}
 
-	 $(document).ready(function(){
-	     $('html').on("click", "body", function() {
-				alert("oii");
-	    });
-	 });
+    $('body').on("click", "#status", function() {
+    	alert(" hey" );
+    });
 
 </script>
 
@@ -134,6 +132,7 @@ margin:0;
 -->
 
 <a onclick="FB.login();"><input type="button" value="Try Facebook photoTags®" style=" cursor:pointer; margin-left:15px; width:200px; padding-top:3px; padding-bottom:3px; border-radius:3px; border:0; background-color:rgb(71,99,158); color:white;" /></a>
+
 
 <div id="status">
 </div>
