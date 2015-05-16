@@ -3,13 +3,14 @@
 def readCommentary(data, tags):
         m = len(data['comments']['data'])
         for i in range(m):
+                msg = ""
                 try:
                         msg = data['comments']['data'][i]['message']
                 except:
                         return False;
                 for j in tags:
                     if msg.find(j) != -1:
-                            return True
+                            return msg
         return False
                 
 
@@ -28,10 +29,11 @@ def parse(data, tags):
     ans = []
     for i in range(n):
         # Seeking for comments who have 'tags' inside
-        if readCommentary(obj['data'][i], tags):
+        resp = readCommentary(obj['data'][i], tags)
+        if resp:
             link = obj['data'][i]['link']
             source = obj['data'][i]['source']
-            v = {"link": link, "source": source}
+            v = {"link": link, "source": source, "found": resp}
             ans.append(v)
             # Seeking for image descriptions who have 'tags' inside
             return json.dumps(ans)
