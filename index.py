@@ -148,8 +148,10 @@ def getUserStatus(userid):
     if user:
         status = 1
     else:
-        if InviteTable.query.filter_by(userid=userid).first():
+        pass
+"""        if InviteTable.query.filter_by(userid=userid).first():
             status = 2
+"""
     return status
 
 @app.route('/singleuserstatus/<username>')
