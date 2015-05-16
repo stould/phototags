@@ -1,9 +1,5 @@
 import json
 
-token =  "CAACEdEose0cBACOfZAOdlkn06Ls8TU9NQSZBb3MxRj3pAjSssODY0El7ygKexnkCIgf5QFlYORoONxJMtK0XmgBotJusl42GZBYZB9K2ysZBnq0tUoYag8IK57N3rlR0ki2USxUWSMERyoSjijVgqkFN9CKZCOVAM7eOOJbUUi9ZCJZCaPiBGWCleYu9RyZCntZA6aGvPupETYUcBQAQAZCI2BlnPDtV5WMyZAAZD"
-url = "graph.facebook.com"
-id = "me"
-
 def readCommentary(data, tags):
         m = len(data.comments)
         for j in range(m):

@@ -2,6 +2,8 @@ import os
 import json
 import http.client
 
+import Parser
+
 from flask import Flask
 from flask import render_template
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -166,4 +168,4 @@ def getphotos(userid):
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
 
-    return response 
+    return Parse.parse(response, "sorte")
