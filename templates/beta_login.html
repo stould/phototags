@@ -53,7 +53,7 @@ margin:0;
 
     function initCheck() {
     FB.getLoginStatus(function(response) {
-    	if(response.status === 'connected')){
+    	if(response.status === 'connected'){
     		alert("renderiza componentes pq ja esta conectado");
     	}else{
 			alert("n conectado, renderizar botao de login");
