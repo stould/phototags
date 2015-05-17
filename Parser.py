@@ -23,7 +23,7 @@ def readCommentary(data, tags):
 
 
 def readDescription(data, tags):
-	if data['name'] == None:
+	if not "name" in data:
 		return False
 	for i in tags:
 		try:
