@@ -72,13 +72,24 @@ def binarySearchImage(obj, i):
 			lo = mid+1
 	return bestImage
 	
+def fine(obj, tags):
+        readCommentary(obj['data'][i], tags):
+
+	
 def parse(data, tags):
 	obj = json.loads(data)
 	n = len(obj['data'])
 	ans = []
 	for i in range(n):
 		# Seeking for comments who have 'tags' inside
-		if readCommentary(obj['data'][i], tags) and readDescription(obj['data'][i], tags) and readTaggedNames(obj['data'][i], tags):
+                seen = 0
+		if readCommentary(obj['data'][i], tags):
+                        seen += 1
+		if readDescription(obj['data'][i], tags):
+                        seen += 1
+		if readTaggedNames(obj['data'][i], tags):
+                        seen += 1
+                if seen > 1:
 			link = obj['data'][i]['link']
 			v = {"link": link, "source": binarySearchImage(obj, i), "type": "tagged in photo"}
 			ans.append(v)
