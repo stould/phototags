@@ -11,7 +11,7 @@ def threadTag(tag):
 
 def readCommentary(data, tags):
     if not 'comments' in data:
-        return False
+        return set()
     n = len(tags)
     m = len(data['comments']['data'])
 
