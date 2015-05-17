@@ -116,13 +116,12 @@
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
-		alert(data[0].name);
-		$.each(data, function( key, val ){
-		var con = 0;
-		var source_;
-		var link_;
-//			$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+source_+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');			    
-		  });
+		var json_obj = $.parseJSON(data);
+		for (var i in json_obj){
+                alert(json_obj[i].source + ",  " + json_obj[i].link);
+            }
+            //			$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+source_+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');		
+
 		 });
 	 }
 
