@@ -183,4 +183,4 @@ def getparsedphotos(username):
     response_all = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
     response_photos = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
     
-    return Parser.parse(response_all, tags) + Parser(response_photos, tags)
+    return Parser.parse(response_all, tags) + Parser.parse(response_photos, tags)
