@@ -117,15 +117,18 @@
 		// REMOVE LOADER
 		$('#myLoader').hide();
 		$.each( data, function( key, val ){
+		var con = 0;
+		var source_;
+		var link_;
 			    $.each( val, function( key_, val_ ) {
-			    alert( key_ + " - " + val_ );
+						if(con == 0)
+							source_ = val_;
+						if(con == 1)
+							link_ = val_;
+						con++;
 				  });
+			$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+source_+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');			    
 		  });
-			 for(var i=0;i<4;i++){
-				for(var j=0;j<4;j++){    
-		  $("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+data+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');
-				}
-			 }
 		 });
 	 }
 
