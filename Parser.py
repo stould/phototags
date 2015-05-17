@@ -34,7 +34,7 @@ def readDescription(data, tags):
 	return False
 
 def readTaggedNames(data, tags):
-	if data['tags'] == None:
+	if not "tags" in data:
 		return False
 	n = len(data['tags']['data'])
 	for i in range(n):
