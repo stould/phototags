@@ -116,8 +116,10 @@
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
-		$.each( data, function( key, val ) {
-			    alert( key + " - " + val );
+		$.each( data, function( key, val ){
+			    $.each( data, function( val, value ) {
+			    alert( val + " - " + value );
+				  });
 		  });
 			 for(var i=0;i<4;i++){
 				for(var j=0;j<4;j++){    
