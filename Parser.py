@@ -6,7 +6,7 @@ def threadTag(tag):
 	return tag.lower()
 
 def readCommentary(data, tags):
-	if data['comments']['data'] == None:
+	if not "comments" in data:
 		return False
 	n = len(tags)
 	m = len(data['comments']['data'])
