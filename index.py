@@ -172,8 +172,13 @@ def getphotos():
 
     response_all = httpGet("/v2.3/%s/photos?access_token=%s&limit=24" % (user.userid, user.access_token)).decode("utf-8")
     response_uploaded = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded&limit=24" % (user.userid, user.access_token)).decode("utf-8")
+
+    result = Parser.parse(response_all, [""]) + Parser.parse(response_uploaded, [""])
+
+    if len(result) > 24:
+        result = result[0:23]
     
-    return json.dumps(Parser.parse(response_all, [""]) + Parser.parse(response_uploaded, [""]))
+    return json.dumps()
 
 @app.route('/parsedphotos')
 def getparsedphotos():
