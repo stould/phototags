@@ -116,12 +116,9 @@
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
-		$.each(data,function(i,j){
-			alert(data[i].source);
-			alert(data[i].link);  
-		});
-            //			$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+source_+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');		
-
+			$.each(data,function(i,j){
+				$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+data[i].source+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');		
+			});
 		 });
 	 }
 
