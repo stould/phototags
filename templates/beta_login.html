@@ -116,10 +116,9 @@
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
-		var json_obj = $.parseJSON(data);
-		for (var i in json_obj){
-                alert(json_obj[i].source + ",  " + json_obj[i].link);
-            }
+		$.each(data,function(i,j){
+			alert(j[i].link);  
+		});
             //			$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+source_+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');		
 
 		 });
