@@ -94,12 +94,11 @@ def parse(data, tags):
         # Seeking for comments who have 'tags' inside
 
         seen = set()
-        seen += readCommentary(obj['data'][i], tags)
-        seen += readDescription(obj['data'][i], tags)
-        seen += readTaggedNames(obj['data'][i], tags)
+        seen = seen + readCommentary(obj['data'][i], tags)
+        seen = seen + readDescription(obj['data'][i], tags)
+        seen = seen + readTaggedNames(obj['data'][i], tags)
 
         if len(seen) == len(tags):
-            seen += 1
             link = obj['data'][i]['link']
             v = {'link': link, 'source': binarySearchImage(obj, i),
                  'type': 'tagged in photo'}
