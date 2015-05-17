@@ -94,9 +94,9 @@ def parse(data, tags):
         # Seeking for comments who have 'tags' inside
 
         seen = set()
-        seen = seen + readCommentary(obj['data'][i], tags)
-        seen = seen + readDescription(obj['data'][i], tags)
-        seen = seen + readTaggedNames(obj['data'][i], tags)
+        seen = seen | readCommentary(obj['data'][i], tags)
+        seen = seen | readDescription(obj['data'][i], tags)
+        seen = seen | readTaggedNames(obj['data'][i], tags)
 
         if len(seen) == len(tags):
             link = obj['data'][i]['link']
