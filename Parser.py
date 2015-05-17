@@ -40,7 +40,7 @@ def readTaggedNames(data, tags):
 	for i in range(n):
 		name = data['tags']['data'][i]['name']
 		for j in range(len(tags)):
-			if name.find(tags[j]) != -1:
+			if name.lower().find(tags[j].lower()) != -1:
 				return True
 	return False
 
