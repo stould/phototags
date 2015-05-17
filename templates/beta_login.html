@@ -138,10 +138,15 @@
 			 });
 	 });
 
-	 function setView(data){
+	 function setView(data){	
+	 	var flag = 0;
 	 	$.each(data,function(i,j){
+			 	flag = 1;
 				$("#ans").append('<div class="we_pic" style="float:left;height:205px; width:205px; "><a href="'+data[i].link+'" target="_top" ><img src="'+data[i].source+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></a></div>');		
 			});
+		if(flag == 0){
+			$("#ans").append('<center><img style="margin-top:50px;" src="sorry.jpg" /></center>');
+		}
 	 }
 	 
 
