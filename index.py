@@ -180,7 +180,7 @@ def getparsedphotos(username):
     user = FBuserTable.query.filter_by(username=username).first()
     tags = request.args.get('tags').split(",")
     
-    response_all = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8").decode("string_scape")
-    response_photos = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8").decode("string_scape")
+    response_all = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
+    response_photos = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
     
     return json.dumps(Parser.parse(response_all, tags) + Parser.parse(response_photos, tags))
