@@ -174,7 +174,7 @@ def getphotos(username):
 
     result = response_all + response_uploaded
     
-    return str(Parser.parse(response_all, [""]) + Parser.parse(response_uploaded, [""]))
+    return json.dumps(Parser.parse(response_all, [""]) + Parser.parse(response_uploaded, [""]))
 
     
 @app.route('/parsedphotos/<username>')
