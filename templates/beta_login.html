@@ -66,7 +66,6 @@
 	 }
 
 	 function process(response) {
-	 
 		putPhotoPage();
 	 }
 
@@ -125,7 +124,7 @@
 
 	// GET NEW PICS WITH USER TAGS
 	 $('#img_search1').click(function(){
-		var tags = $('#search_tool1').val();
+		var tags = "";
 		alert('https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags);
 		$("#ans").animate({
          opacity:0
@@ -133,7 +132,7 @@
 					$('#myLoader').show();
 							$.ajax({
 								 type: 'GET',
-									 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags;
+									 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags
 								}).done(function(data) {
 								// REMOVE LOADER
 								$('#myLoader').hide();
