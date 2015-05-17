@@ -178,7 +178,7 @@ def getphotos():
     if len(result) > 24:
         result = result[0:23]
     
-    return json.dumps()
+    return json.dumps(result)
 
 @app.route('/parsedphotos')
 def getparsedphotos():
