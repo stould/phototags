@@ -168,13 +168,13 @@ def getUserInfo(userid):
 def getphotos(username):
     user = FBuserTable.query.filter_by(username=username).first()
     
-    response_all = httpGet("/v2.3/%s/photos?access_token=%s&fields=name,link,images" % (user.userid, user.access_token)).decode("utf-8")
-    response_uploaded = httpGet("/v2.3/%s/photos?access_token=%s&fields=name,link,images&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
+    response_all = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
+    response_uploaded = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
     
 
     result = response_all + response_uploaded
     
-    return json.dumps(Parser.parse(response_all, [""]))
+    return json.dumps(Parser.parse(response_uploaded, [""]))
 
     
 @app.route('/parsedphotos/<username>')
