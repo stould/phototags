@@ -26,10 +26,12 @@ class FBuserTable(db.Model):
     __tablename__ = 'fbuser'
 
     userid       = db.Column(db.String(), primary_key=True)
+    username     = db.Column(db.String())
     access_token = db.Column(db.String())
 
-    def __init__(self, userid, access_token):
+    def __init__(self, userid, username, access_token):
         self.userid = userid
+        self.username = username
         self.access_token = access_token
 
     def __repr__(self):
@@ -107,14 +109,14 @@ def inviteUser(userid):
         db.session.commit()
         return json.dumps({"status": 1})
     
-@app.route('/adduser/<userid>/<token>')
-def adduser(userid, token):
+@app.route('/adduser/<userid>/<username>/<token>')
+def adduser(userid, username, token):
     try:
         extended_token = getExtendedToken(token)
     
         if extended_token != -1:        
             try:
-                db.session.add(FBuserTable(userid, extended_token))
+                db.session.add(FBuserTable(userid, username, extended_token))
                 db.session.commit()
                 return json.dumps({"status": 1})
             except:
@@ -162,18 +164,19 @@ def getUserInfo(userid):
     else:
         return json.dumps({"status": 0})
 
-@app.route('/photos/<userid>')
+@app.route('/photos/<username>')
 def getphotos(userid):
-    user = FBuserTable.query.filter_by(userid=userid).first()
+    user = FBuserTable.query.filter_by(username=username).first()
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
 
     return response
 
     
-@app.route('/parsedphotos/<userid>')
-def getparsedphotos(userid):
-    user = FBuserTable.query.filter_by(userid=userid).first()
+@app.route('/parsedphotos/<username>')
+def getparsedphotos(username):
+    user = FBuserTable.query.filter_by(username=username).first()
+    tags = request.args.get('tags')
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
 
