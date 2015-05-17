@@ -62,7 +62,7 @@ def binarySearchImage(obj, i):
 	bestImage = None
 	while(lo <= hi):
 		mid = (lo+hi) // 2
-		seeked = seekImage(obj['data'][i]['images'])
+		seeked = seekImage(obj['data'][i]['images'], mid)
 		if seeked != None:
 			if mid < small:
 				small = mid
