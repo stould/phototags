@@ -170,7 +170,19 @@ def getphotos():
     
     user = FBuserTable.query.filter_by(username=username).first()
 
-    response_all = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
+    response_all = []
+
+    curr_url = "/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)
+    
+    while True:
+        curr = httpGet(curr_url).decode("utf-8")
+        response_all += curr
+        js = json.loads(curr)
+
+        if not "next" in js['paging']:
+            break
+        curr_url = js['paging']['next']
+            
     response_uploaded = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
     
     return json.dumps(Parser.parse(response_all, [""]) + Parser.parse(response_uploaded, [""]))
