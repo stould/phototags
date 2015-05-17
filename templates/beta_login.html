@@ -108,17 +108,18 @@
 
 	 function putPhotoPage(){
 	 	// FIRST REQUEST GET ALL PHOTOS
-	 	//var my_url = 'https://phototags.herokuapp.com/photos/'+he_username;
-	 	var my_url = 'https://phototags.herokuapp.com/local';
+	 	var my_url = 'https://phototags.herokuapp.com/photos/'+he_username;
 		$.ajax({
 		 type: 'GET',
+		 dataType: 'json',
 		 url: my_url
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
+		alert(JSON.stringify(data));
 			 for(var i=0;i<4;i++){
 				for(var j=0;j<4;j++){    
-		  $("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+data+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');
+		  $("#ans").append('<div class="we_pic" style="float:left;height:210px; width:210px; "><img src="'+data+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');
 				}
 			 }
 		 });
