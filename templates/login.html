@@ -46,7 +46,7 @@
 		 
 		 if (JSON.parse(data).status == 0) {
 		   $.ajax({
-			 url: 'https://phototags.herokuapp.com/adduser/' + userID + '/' + username + '/' + access_token
+			 url: 'https://phototags.herokuapp.com/adduser/' + userID + '/' + me_username + '/' + access_token
 		   }).done(function(data) {
 			 console.log('User successfully inserted in database');
 			 console.log('Data ' + data);
