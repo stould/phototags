@@ -174,7 +174,7 @@ def getphotos(username):
 
     result = response_all + response_uploaded
     
-    return str(result)
+    return json.dumps(Parser.parse(result, [""]))
 
     
 @app.route('/parsedphotos/<username>')
@@ -183,6 +183,8 @@ def getparsedphotos(username):
     tags = request.args.get('tags').split(",")
     
     response_all = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
-    response_photos = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
+    response_uploaded = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
+
+    result = response_all + response_uploaded
     
-    return json.dumps(Parser.parse(response_all, tags))
+    return json.dumps(Parser.parse(result, tags))
