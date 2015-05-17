@@ -116,9 +116,7 @@
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
-			$.each(data,function(i,j){
-				$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><a href="'+data[i].link+'" target="_top" ><img src="'+data[i].source+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></a></div>');		
-			});
+			setView(data);
 		 });
 	 }
 
@@ -136,15 +134,17 @@
 								}).done(function(data) {
 								// REMOVE LOADER
 								$('#myLoader').hide();
-									 for(var i=0;i<4;i++){
-										for(var j=0;j<4;j++){    
-								  $("#ans").append('<div class="we_pic" style="float:left;height:200px; width:200px; "><img src="'+data+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');
-										}
-									 }
+									setView(data);
 								 });
          }); 
 
 	 });
+
+	 function setView(data){
+	 	$.each(data,function(i,j){
+				$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><a href="'+data[i].link+'" target="_top" ><img src="'+data[i].source+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></a></div>');		
+			});
+	 }
 	</script>
 	
 	<!--
