@@ -31,6 +31,7 @@
 	   var me_username = '-1';
 
 	   FB.api('/me', function(response) {
+		 console.log('ratos ' + response);
 		 $.ajax({
 		   type: 'GET'
 		   url: 'https://graph.facebook.com/' + response.id
