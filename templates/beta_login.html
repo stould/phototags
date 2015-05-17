@@ -123,14 +123,13 @@
 
 	// GET NEW PICS WITH USER TAGS
 	 $('#img_search1').click(function(){
-	 	var my_url = 'https://phototags.herokuapp.com/parsedphotos?username='+he_username+'&&tags='+tags;
 		var tags = $('#search_tool1').val();
 		$('#ans').html('');
 		$('#myLoader').show();
 			$.ajax({
 			 type: 'GET',
 			 dataType: 'json',
-				 url:my_url
+				 url: 'https://phototags.herokuapp.com/parsedphotos?username='+he_username+'&&tags='+tags
 			}).done(function(data){
 			// REMOVE LOADER
 			$('#myLoader').hide();
@@ -158,3 +157,4 @@
 		
   </body>
 </html>
+
