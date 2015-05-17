@@ -176,7 +176,7 @@ def getphotos():
     return json.dumps(Parser.parse(response_all, [""]) + Parser.parse(response_uploaded, [""]))
 
 @app.route('/parsedphotos')
-def getparsedphotos):
+def getparsedphotos():
     username = request.args.get('username')
     tags = request.args.get('tags').split(",")
     
