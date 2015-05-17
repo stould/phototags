@@ -116,12 +116,14 @@
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
-		alert(JSON.stringify(data));
-			 for(var i=0;i<4;i++){
-				for(var j=0;j<4;j++){    
-		  $("#ans").append('<div class="we_pic" style="float:left;height:210px; width:210px; "><img src="'+data+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');
-				}
-			 }
+		var obj = jQuery.parseJSON(data);
+		alert(JSON.stringify(obj));
+		$.each( data, function( key, val ){
+		var con = 0;
+		var source_;
+		var link_;
+//			$("#ans").append('<div class="we_pic" style="float:left;height:206px; width:206px; "><img src="'+source_+'" style="height:150%; float:left; margin-left:4px; margin-top:4px; border:thin solid #bebfbf;"/></div>');			    
+		  });
 		 });
 	 }
 
