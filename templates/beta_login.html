@@ -39,7 +39,7 @@
 	$('#content_page').append('<div id="ans"></div>');
 
 	//####### GLOBAL USERNAME TO SEND REQUEST
-	alert(getUrlParameter("user"));
+	var he_username = getUrlParameter("user");
 	
 	function getUrlParameter(sParam){
     var sPageURL = window.location.search.substring(1);
@@ -66,6 +66,7 @@
 	 }
 
 	 function process(response) {
+	 
 		putPhotoPage();
 	 }
 
@@ -110,7 +111,7 @@
 	 	// FIRST REQUEST GET ALL PHOTOS
 		$.ajax({
 		 type: 'GET',
-		 url: 'https://phototags.herokuapp.com/local'
+		 url: 'https://phototags.herokuapp.com/photos/'+he_username
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
@@ -124,14 +125,15 @@
 
 	// GET NEW PICS WITH USER TAGS
 	 $('#img_search1').click(function(){
-
+		var tags = $('#search_tool1').val();
+		alert('https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags);
 		$("#ans").animate({
          opacity:0
          }, 400, function() {
 					$('#myLoader').show();
 							$.ajax({
 								 type: 'GET',
-									 url: 'https://phototags.herokuapp.com/local'
+									 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags;
 								}).done(function(data) {
 								// REMOVE LOADER
 								$('#myLoader').hide();
@@ -144,8 +146,6 @@
          }); 
 
 	 });
-
-  
 	</script>
 	
 	<!--
