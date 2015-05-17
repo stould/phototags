@@ -165,7 +165,7 @@ def getUserInfo(userid):
         return json.dumps({"status": 0})
 
 @app.route('/photos/<username>')
-def getphotos(userid):
+def getphotos(username):
     user = FBuserTable.query.filter_by(username=username).first()
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
@@ -176,8 +176,8 @@ def getphotos(userid):
 @app.route('/parsedphotos/<username>')
 def getparsedphotos(username):
     user = FBuserTable.query.filter_by(username=username).first()
-    tags = request.args.get('tags')
+    tags = request.args.get('tags').split(",")
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
 
-    return Parser.parse(response, ["craca123"])
+    return Parser.parse(response, tags)
