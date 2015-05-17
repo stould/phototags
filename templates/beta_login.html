@@ -133,7 +133,7 @@
 					$('#myLoader').show();
 							$.ajax({
 								 type: 'GET',
-									 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags;
+									 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags
 								}).done(function(data) {
 								// REMOVE LOADER
 								$('#myLoader').hide();
