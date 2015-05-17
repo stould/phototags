@@ -36,8 +36,21 @@
 	// PUT LOADER
 		$('#content_page').append('	<center><img class="_359 img" id="myLoader" src="https://fbstatic-a.akamaihd.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif" alt="" id="u_0_2w" height="32" width="32"></center>');
 	// PUT DIV ANS		
-	$('#content_page').append('<div id="ans"></div> ');
+	$('#content_page').append('<div id="ans"></div>');
 
+	//####### GLOBAL USERNAME TO SEND REQUEST
+	var he_username = getUrlParameter("user");
+	
+	function getUrlParameter(sParam){
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++){
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam){
+            return sParameterName[1];
+        }
+    }
+	}       
 	 	 	
 	function statusChangeCallback(response) {
 	   console.log('statusChangeCallback');
@@ -53,6 +66,7 @@
 	 }
 
 	 function process(response) {
+	 
 		putPhotoPage();
 	 }
 
@@ -97,7 +111,7 @@
 	 	// FIRST REQUEST GET ALL PHOTOS
 		$.ajax({
 		 type: 'GET',
-		 url: 'https://phototags.herokuapp.com/local'
+		 url: 'https://phototags.herokuapp.com/photos/'+he_username
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
@@ -111,14 +125,15 @@
 
 	// GET NEW PICS WITH USER TAGS
 	 $('#img_search1').click(function(){
-
+		var tags = $('#search_tool1').val();
+		alert('https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags);
 		$("#ans").animate({
          opacity:0
          }, 400, function() {
 					$('#myLoader').show();
 							$.ajax({
 								 type: 'GET',
-									 url: 'https://phototags.herokuapp.com/local'
+									 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags;
 								}).done(function(data) {
 								// REMOVE LOADER
 								$('#myLoader').hide();
@@ -131,8 +146,6 @@
          }); 
 
 	 });
-
-  
 	</script>
 	
 	<!--
