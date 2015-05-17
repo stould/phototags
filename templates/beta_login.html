@@ -124,21 +124,20 @@
 	// GET NEW PICS WITH USER TAGS
 	 $('#img_search1').click(function(){
 		var tags = $('#search_tool1').val();
-		$("#ans").animate({
-         opacity:0
-         }, 400, function() {
-					$('#myLoader').show();
-							$.ajax({
-								 type: 'GET',
-								 dataType: 'json',
-									 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags
-								}).done(function(data){
-								// REMOVE LOADER
-								$('#myLoader').hide();
-									alert(JSON.stringify(data)); 
-									setView(data);
-								 });
-         }); 
+		$('#ans').html('');
+		$('#myLoader').show();
+			$.ajax({
+			 type: 'GET',
+			 dataType: 'json',
+				 url: 'https://phototags.herokuapp.com/parsedphotos/'+he_username+'?tags='+tags
+			}).done(function(data){
+			// REMOVE LOADER
+			$('#myLoader').hide();
+				alert(JSON.stringify(data)); 
+				setView(data);
+			 });
+						
+
 
 	 });
 
