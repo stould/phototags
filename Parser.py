@@ -17,7 +17,7 @@ def readCommentary(data, tags):
 		except:
 			return False
 		for j in tags:
-			if msg.find(j) != -1:
+			if msg.lower().find(j.lower()) != -1:
 				return True
 	return False
 
@@ -27,7 +27,7 @@ def readDescription(data, tags):
 		return False
 	for i in tags:
 		try:
-			if data['name'].find(i) != -1:
+			if data['name'].lower().find(i.lower()) != -1:
 				return True
 		except:
 			return False
