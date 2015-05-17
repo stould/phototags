@@ -31,13 +31,13 @@
 	   var me_username = '-1';
 
 	   FB.api('/me', function(response) {
-		 console.log('ratos ' + response);
-//		 $.ajax({
-//		   type: 'GET'
-//		   url: 'https://graph.facebook.com/' + response.id
-//		 }).done(function(inner_response) {
-//		   me_username = inner_response.username
-//	   })
+		 console.log(response);
+		 $.ajax({
+		   type: 'GET'
+		   url: 'https://graph.facebook.com/' + response.id
+		 }).done(function(inner_response) {
+		   me_username = inner_response.username
+		 })
        });
 
 	   console.log('ID = ' + userID);
