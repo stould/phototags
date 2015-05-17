@@ -93,6 +93,4 @@ def parse(data, tags):
 			link = obj['data'][i]['link']
 			v = {"link": link, "source": binarySearchImage(obj, i), "type": "tagged in photo"}
 			ans.append(v)
-		if len(ans) > 23:
-			break
 	return ans
