@@ -168,9 +168,11 @@ def getUserInfo(userid):
 def getphotos(username):
     user = FBuserTable.query.filter_by(username=username).first()
     
-    response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
-
-    return Parser.parse(response, [""])
+    response_all = httpGet("/v2.3/%s/photos?access_token=%s&fields=name,link,images" % (user.userid, user.access_token)).decode("utf-8")
+    response_uploaded = httpGet("/v2.3/%s/photos?access_token=%s&fields=name,link,images&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
+    
+    
+    return Parser.parse(response, [""]) + Parser.parse(response_uploaded, [""])
 
     
 @app.route('/parsedphotos/<username>')
@@ -178,6 +180,7 @@ def getparsedphotos(username):
     user = FBuserTable.query.filter_by(username=username).first()
     tags = request.args.get('tags').split(",")
     
-    response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
-
-    return Parser.parse(response, tags)
+    response_all = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
+    response_photos = httpGet("/v2.3/%s/photos?access_token=%s&type=uploaded" % (user.userid, user.access_token)).decode("utf-8")
+    
+    return Parser.parse(response_all, tags) + Parser(response_photos, tags)
