@@ -85,11 +85,11 @@ def parse(data, tags):
 			v = {"link": link, "source": binarySearchImage(obj, i), "type": "commentary"}
 			ans.append(v)
 			# Seeking for image descriptions who have 'tags' inside
-		if readDescription(obj['data'][i], tags):
+		elif readDescription(obj['data'][i], tags):
 			link = obj['data'][i]['link']
 			v = {"link": link, "source": binarySearchImage(obj, i), "type": "description"}
 			ans.append(v)
-		if readTaggedNames(obj['data'][i], tags):
+		elif readTaggedNames(obj['data'][i], tags):
 			link = obj['data'][i]['link']
 			v = {"link": link, "source": binarySearchImage(obj, i), "type": "tagged in photo"}
 			ans.append(v)
