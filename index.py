@@ -170,7 +170,7 @@ def getphotos(username):
     
     response = httpGet("/v2.3/%s/photos?access_token=%s" % (user.userid, user.access_token)).decode("utf-8")
 
-    return Parse.Parse(response, [""])
+    return Parser.parse(response, [""])
 
     
 @app.route('/parsedphotos/<username>')
