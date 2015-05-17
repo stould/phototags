@@ -108,9 +108,11 @@
 
 	 function putPhotoPage(){
 	 	// FIRST REQUEST GET ALL PHOTOS
+	 	//var my_url = 'https://phototags.herokuapp.com/photos/'+he_username;
+	 	var my_url = 'https://phototags.herokuapp.com/local;
 		$.ajax({
 		 type: 'GET',
-		 url: 'https://phototags.herokuapp.com/photos/'+he_username
+		 url: my_url
 	   }).done(function(data) {
 		// REMOVE LOADER
 		$('#myLoader').hide();
