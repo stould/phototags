@@ -31,7 +31,7 @@ def readCommentary(data, tags):
 
 def readDescription(data, tags):
     if not 'name' in data:
-        return False
+        return set()
     seen = set()
     for i in tags:
         if not 'name' in data:
