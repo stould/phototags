@@ -55,7 +55,7 @@ def seekImage(data, DIFF):
 	return None
 
 #binary search the images to get the nearest to 500x500
-def binarySearchImage(obj):
+def binarySearchImage(obj, i):
 	lo = 0
 	hi = 500
 	small = 99999
@@ -82,15 +82,15 @@ def parse(data, tags):
 		# Seeking for comments who have 'tags' inside
 		if readCommentary(obj['data'][i], tags):
 			link = obj['data'][i]['link']
-			v = {"link": link, "source": binarySearchImage(obj), "type": "commentary"}
+			v = {"link": link, "source": binarySearchImage(obj, i), "type": "commentary"}
 			ans.append(v)
 			# Seeking for image descriptions who have 'tags' inside
 		if readDescription(obj['data'][i], tags):
 			link = obj['data'][i]['link']
-			v = {"link": link, "source": binarySearchImage(obj), "type": "description"}
+			v = {"link": link, "source": binarySearchImage(obj, i), "type": "description"}
 			ans.append(v)
 		if readTaggedNames(obj['data'][i], tags):
 			link = obj['data'][i]['link']
-			v = {"link": link, "source": binarySearchImage(obj), "type": "tagged in photo"}
+			v = {"link": link, "source": binarySearchImage(obj, i), "type": "tagged in photo"}
 			ans.append(v)
 	return json.dumps(ans)
