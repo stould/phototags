@@ -11,8 +11,8 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 #constants
 URL_PREFIX = "graph.facebook.com";
-APP_ID = "466465463517234";
-APP_SECRET = "d12434e88aff924402e529c6c8b493df";
+APP_ID = "";
+APP_SECRET = "";
 
 #setup
 app = Flask(__name__)
